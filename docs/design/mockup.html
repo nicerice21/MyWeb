@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Mockup v0.2 — MyWeb</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #FBFAF6;
+  --paper-2: #F4F2EB;
+  --ink: #1D1C18;
+  --ink-2: #55524B;
+  --ink-3: #8B877D;
+  --rule: #E3E0D5;
+  --rule-dot: #C9C5B8;
+  --margin-red: #DE8E88;
+  --grad-a: linear-gradient(135deg, #4353C9 0%, #E0644F 100%);
+  --serif: "Shippori Mincho B1", "Hiragino Mincho ProN", serif;
+  --sans: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif;
+  --mono: "JetBrains Mono", Consolas, monospace;
+  --disp: "Space Grotesk", var(--sans);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { -webkit-font-smoothing: antialiased; }
+body {
+  background: #E9E7DE;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.8;
+}
+.mono { font-family: var(--mono); }
+
+/* ---------- spec sheet ---------- */
+.sheet { max-width: 1120px; margin: 0 auto; padding: 40px 32px 80px; }
+.spec-top {
+  display: flex; justify-content: space-between; gap: 16px;
+  font-size: .68rem; letter-spacing: .12em; color: var(--ink-3);
+  border-bottom: 1px solid var(--rule); padding-bottom: 12px; margin-bottom: 48px;
+}
+.spec-sec { margin-bottom: 72px; }
+.spec-h {
+  font-family: var(--mono); font-weight: 500; font-size: .72rem;
+  letter-spacing: .22em; color: var(--ink-3); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.spec-h::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+
+.concept-lead { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; margin-bottom: 20px; }
+.concept-list { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.concept-list li {
+  border: 1px solid var(--rule); background: var(--paper);
+  padding: 18px 20px; font-size: .84rem; color: var(--ink-2); line-height: 1.9;
+}
+.concept-list b { display: block; font-family: var(--serif); color: var(--ink); font-size: .95rem; margin-bottom: 6px; }
+
+/* ---------- tokens ---------- */
+.tok-label { font-family: var(--mono); font-size: .62rem; letter-spacing: .2em; color: var(--ink-3); margin: 28px 0 12px; }
+.swatches { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+.swatch { border: 1px solid var(--rule); background: var(--paper); }
+.swatch-fill { height: 64px; }
+.swatch-name { font-family: var(--mono); font-size: .6rem; letter-spacing: .08em; color: var(--ink-2); padding: 8px 10px; }
+.grads { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.grad { border: 1px solid var(--rule); background: var(--paper); padding: 10px; }
+.grad-bar { height: 48px; }
+.grad-name { font-family: var(--mono); font-size: .62rem; letter-spacing: .08em; color: var(--ink-2); margin-top: 10px; display: flex; justify-content: space-between; }
+.grad-name em { font-style: normal; background: var(--grad-a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.type-row { display: grid; grid-template-columns: 190px 1fr; gap: 24px; align-items: baseline; border-bottom: 1px dotted var(--rule-dot); padding: 18px 0; }
+.type-meta { font-family: var(--mono); font-size: .62rem; letter-spacing: .1em; color: var(--ink-3); line-height: 1.9; }
+.type-sample-1 { font-family: var(--serif); font-weight: 600; font-size: 1.6rem; }
+.type-sample-2 { font-size: .92rem; color: var(--ink-2); max-width: 40em; }
+.type-sample-3 { font-family: var(--mono); font-size: .7rem; letter-spacing: .18em; }
+.type-sample-4 { font-family: var(--disp); font-weight: 600; font-size: 1.15rem; letter-spacing: .05em; }
+
+/* ---------- page frame ---------- */
+.frame { border: 1px solid #D6D3C7; background: var(--paper); }
+.site { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+/* header */
+.site-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 26px 0 20px; border-bottom: 1px solid var(--ink);
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-mark { width: 10px; height: 10px; background: var(--grad-a); }
+.logo-text { font-family: var(--disp); font-weight: 600; font-size: .88rem; letter-spacing: .06em; }
+.nav { display: flex; gap: 26px; }
+.nav a {
+  font-family: var(--mono); font-size: .66rem; letter-spacing: .16em;
+  color: var(--ink-3); text-decoration: none; padding-bottom: 3px;
+  background-image: var(--grad-a); background-repeat: no-repeat;
+  background-size: 0% 2px; background-position: 0 100%;
+  transition: background-size .25s ease, color .25s ease;
+}
+.nav a:hover, .nav a.is-active { color: var(--ink); background-size: 100% 2px; }
+
+/* hero */
+.hero { display: flex; gap: 32px; padding: 64px 0 72px; }
+.hero-inner { flex: 1; position: relative; z-index: 1; border-left: 1px solid rgba(222, 142, 136, .55); padding-left: 30px; }
+.hero-kicker {
+  font-size: .66rem; letter-spacing: .2em; color: var(--ink-3); margin-bottom: 22px;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-kicker::before { content: ""; width: 26px; height: 1px; background: var(--ink-3); }
+.hero-title { font-family: var(--serif); font-weight: 600; font-size: clamp(1.9rem, 4.4vw, 2.9rem); line-height: 1.42; letter-spacing: .02em; }
+.hero-title em { font-style: normal; background: var(--grad-a); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .06em; }
+.hero-en { font-family: var(--disp); font-weight: 500; font-size: .7rem; letter-spacing: .26em; color: var(--ink-3); margin-top: 20px; }
+.hero-lead { font-size: .92rem; color: var(--ink-2); line-height: 2.1; max-width: 33em; margin-top: 16px; }
+.hero-links { display: flex; align-items: center; gap: 26px; margin-top: 34px; }
+.btn {
+  display: inline-block; border: 1px solid var(--ink); color: var(--ink);
+  font-size: .82rem; font-weight: 500; text-decoration: none; padding: 10px 24px;
+  transition: background .2s ease, color .2s ease;
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+.link {
+  color: var(--ink); text-decoration: none; font-size: .84rem; padding-bottom: 2px;
+  background-image: var(--grad-a); background-repeat: no-repeat;
+  background-size: 0% 1.5px; background-position: 0 100%;
+  transition: background-size .3s ease;
+}
+.link:hover, .link.is-hover { background-size: 100% 1.5px; }
+
+/* hero geometry + icons */
+.hero-geo { width: 320px; position: relative; flex-shrink: 0; margin-left: -72px; z-index: 0; }
+.geo-grid {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, #C7C3B4 1px, transparent 1.2px);
+  background-size: 22px 22px;
+  -webkit-mask-image: linear-gradient(205deg, rgba(0,0,0,.95) 30%, transparent 72%);
+  mask-image: linear-gradient(205deg, rgba(0,0,0,.95) 30%, transparent 72%);
+}
+.geo-ring {
+  position: absolute; width: 148px; height: 148px; border-radius: 50%;
+  border: 1px solid #ADA897; top: 44px; left: 96px; background: transparent;
+}
+.geo-dot { position: absolute; width: 11px; height: 11px; border-radius: 50%; background: var(--grad-a); top: 116px; left: 90px; }
+.geo-arc {
+  position: absolute; width: 60px; height: 60px; border-radius: 50%;
+  border: 1px solid transparent; border-top-color: var(--ink-3); border-right-color: var(--ink-3);
+  transform: rotate(45deg); top: 190px; left: 30px;
+}
+.geo-label {
+  position: absolute; top: 8px; right: 0; writing-mode: vertical-rl;
+  font-size: .58rem; letter-spacing: .3em; color: var(--ink-3);
+}
+.plus { position: relative; width: 9px; height: 9px; display: inline-block; }
+.plus::before, .plus::after { content: ""; position: absolute; background: var(--ink-3); }
+.plus::before { left: 4px; top: 0; width: 1px; height: 9px; }
+.plus::after { top: 4px; left: 0; height: 1px; width: 9px; }
+.geo-plus { position: absolute; top: 232px; left: 176px; }
+.geo-tile {
+  position: absolute; width: 48px; height: 48px;
+  border: 1px solid #ADA897; background: var(--paper);
+  display: grid; place-items: center; color: var(--ink-2);
+}
+.geo-tile svg { width: 22px; height: 22px; display: block; }
+.geo-tile.t1 { top: 6px; left: 6px; }
+.geo-tile.t2 { top: 120px; left: 196px; border: none; background: var(--grad-a); color: var(--paper); }
+.geo-tile.t3 { top: 208px; left: 112px; }
+
+/* sections */
+.sec { padding: 30px 0 56px; }
+.sec-head {
+  position: relative; display: flex; align-items: baseline; gap: 14px;
+  border-bottom: 1px solid var(--ink); padding: 0 0 10px 56px; margin-bottom: 36px;
+}
+.sec-num {
+  position: absolute; left: 0; bottom: -10px;
+  font-family: var(--mono); font-size: .66rem; letter-spacing: .1em; color: var(--ink-2);
+  background: var(--paper); border: 1px solid var(--rule); padding: 2px 9px;
+}
+.sec-title { font-family: var(--serif); font-weight: 600; font-size: 1.28rem; }
+.sec-en { font-family: var(--mono); font-size: .6rem; letter-spacing: .24em; color: var(--ink-3); }
+.sec-rule { flex: 1; transform-origin: left center; }
+.sec-head .plus { transform: translateY(-2px); }
+
+.note { border-left: 1px solid rgba(222, 142, 136, .5); padding-left: 20px; }
+.about-grid { display: grid; grid-template-columns: 1.55fr 1fr; gap: 48px; }
+.about-text p { font-size: .9rem; color: var(--ink-2); line-height: 2.1; margin-bottom: 1.1em; }
+.about-text p:last-child { margin-bottom: 0; }
+.meta-row { display: flex; align-items: baseline; padding: 7px 0; }
+.meta-row dt { font-family: var(--mono); font-size: .62rem; letter-spacing: .14em; color: var(--ink-3); }
+.meta-dots { flex: 1; border-bottom: 1px dotted var(--ink-3); margin: 0 .7em; transform: translateY(-4px); opacity: .55; }
+.meta-row dd { font-size: .84rem; font-weight: 500; }
+
+/* cards（積み紙の二重枠） */
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card {
+  position: relative; z-index: 1;
+  border: 1px solid var(--rule); background: var(--paper);
+  padding: 18px 20px 16px; transition: transform .2s ease;
+}
+.card::after {
+  content: ""; position: absolute; top: 5px; left: 5px; right: -5px; bottom: -5px;
+  border: 1px solid var(--rule); z-index: -1;
+}
+.card.is-hover {
+  border: 1px solid transparent; transform: translate(-3px, -3px);
+  background:
+    linear-gradient(var(--paper), var(--paper)) padding-box,
+    var(--grad-a) border-box;
+}
+.card-top {
+  display: flex; justify-content: space-between;
+  font-family: var(--mono); font-size: .62rem; letter-spacing: .12em; color: var(--ink-3);
+  margin-bottom: 12px;
+}
+.card-title { font-family: var(--serif); font-weight: 600; font-size: 1.02rem; margin-bottom: 8px; }
+.card-desc { font-size: .82rem; color: var(--ink-2); line-height: 1.95; margin-bottom: 14px; }
+.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.chips li {
+  font-family: var(--mono); font-size: .62rem; letter-spacing: .06em; color: var(--ink-3);
+  border: 1px solid var(--rule); padding: 2px 9px;
+}
+.cards-note { font-family: var(--mono); font-size: .62rem; color: var(--ink-3); letter-spacing: .1em; margin-top: 14px; }
+
+/* articles */
+.sec-note { font-size: .84rem; color: var(--ink-3); margin: -12px 0 22px; }
+.art-list { list-style: none; }
+.art-row {
+  display: grid; grid-template-columns: 86px 1fr auto; gap: 18px; align-items: center;
+  padding: 15px 0; border-bottom: 1px dotted var(--rule-dot);
+}
+.art-row:first-child { border-top: 1px dotted var(--rule-dot); }
+.badge {
+  font-size: .58rem; letter-spacing: .14em; color: var(--ink-2);
+  border: 1px solid var(--ink-3); padding: 3px 0; text-align: center;
+}
+.badge.hatena { border-color: var(--margin-red); color: #C26862; }
+.art-title { font-size: .92rem; font-weight: 500; color: var(--ink); text-decoration: none; line-height: 1.6; }
+.art-title:hover, .art-title.is-hover {
+  background-image: var(--grad-a); background-repeat: no-repeat;
+  background-size: 100% 1.5px; background-position: 0 100%; padding-bottom: 2px;
+}
+.art-tags { display: block; font-family: var(--mono); font-size: .6rem; letter-spacing: .08em; color: var(--ink-3); margin-top: 5px; }
+.art-date { font-family: var(--mono); font-size: .64rem; color: var(--ink-3); letter-spacing: .06em; }
+.art-more { margin-top: 24px; }
+.art-more a { font-family: var(--mono); font-size: .66rem; letter-spacing: .18em; }
+
+/* footer */
+.foot-grad { height: 2px; width: 64px; background: var(--grad-a); margin: 76px auto 0; }
+.site-footer { border-top: 1px solid var(--ink); padding: 22px 0 30px; display: flex; justify-content: space-between; }
+.site-footer span, .site-footer nav { font-family: var(--mono); font-size: .62rem; letter-spacing: .14em; color: var(--ink-3); }
+.site-footer nav { display: flex; gap: 20px; }
+.site-footer nav a { color: var(--ink-2); text-decoration: none; }
+
+/* ---------- dark variant ---------- */
+.dark { background: #1B1A16; padding: 40px 40px 34px; }
+.d-kicker { font-size: .62rem; letter-spacing: .2em; color: #8E8A7E; margin-bottom: 18px; }
+.d-title { font-family: var(--serif); font-weight: 600; font-size: 1.7rem; line-height: 1.45; color: #EFEDE4; }
+.d-title em { font-style: normal; background: var(--grad-a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.d-lead {
+  font-size: .85rem; color: #A8A498; line-height: 2; margin-top: 14px;
+  border-left: 1px solid rgba(222, 142, 136, .4); padding-left: 18px; max-width: 36em;
+}
+.d-rows { list-style: none; margin-top: 28px; }
+.d-row {
+  display: grid; grid-template-columns: 86px 1fr auto; gap: 18px; align-items: center;
+  padding: 13px 0; border-bottom: 1px dotted #3E3C34;
+}
+.d-row .badge { color: #B4B0A4; border-color: #5B584E; }
+.d-row .badge.hatena { border-color: #A4645F; color: #D89490; }
+.d-row .art-title { color: #EFEDE4; }
+.d-row .art-date { color: #8E8A7E; }
+
+/* usage */
+.usage { list-style: none; }
+.usage li {
+  display: grid; grid-template-columns: 170px 1fr; gap: 20px;
+  border-bottom: 1px dotted var(--rule-dot); padding: 13px 0;
+  font-size: .84rem; color: var(--ink-2); line-height: 1.9;
+}
+.usage b { font-family: var(--mono); font-weight: 500; font-size: .62rem; letter-spacing: .16em; color: var(--ink-3); padding-top: 4px; }
+
+/* ---------- scroll animation（IntersectionObserver + CSS のみ） ---------- */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
+.reveal.is-in { opacity: 1; transform: none; }
+.d1 { transition-delay: .07s; }
+.d2 { transition-delay: .14s; }
+.d3 { transition-delay: .21s; }
+.d4 { transition-delay: .28s; }
+.sec-head .sec-rule { transform: scaleX(0); transition: transform .7s cubic-bezier(.22,.61,.36,1) .15s; }
+.sec-head.is-in .sec-rule { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .sec-head .sec-rule { transition: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+@media (max-width: 860px) {
+  .concept-list, .grads, .cards, .about-grid { grid-template-columns: 1fr 1fr; }
+  .swatches { grid-template-columns: repeat(4, 1fr); }
+  .hero { flex-direction: column; }
+  .hero-geo { width: 100%; height: 200px; margin-left: 0; }
+  .geo-tile.t3, .geo-arc, .geo-plus { display: none; }
+  .geo-tile.t1 { top: 10px; left: 10px; }
+  .geo-tile.t2 { top: 64px; left: 200px; }
+  .site-header { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .nav { flex-wrap: wrap; gap: 14px 18px; }
+  .type-row { grid-template-columns: 1fr; gap: 8px; }
+  .usage li { grid-template-columns: 1fr; gap: 6px; }
+}
+@media (max-width: 560px) {
+  .concept-list, .grads, .cards, .about-grid, .swatches { grid-template-columns: 1fr; }
+  .sheet { padding: 24px 14px 60px; }
+  .site { padding: 0 18px; }
+  .dark { padding: 28px 18px; }
+  .art-row, .d-row { grid-template-columns: 64px 1fr; gap: 8px 12px; }
+  .art-main { min-width: 0; }
+  .art-date { grid-column: 2; grid-row: 2; }
+  .art-title { overflow-wrap: break-word; }
+  .about-grid { gap: 28px; }
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="spec-top">
+    <span>MYWEB — DESIGN MOCKUP v0.2</span>
+    <span>2026-10-12 / ※人名・記事名はサンプル / スクロールでアニメーション発火</span>
+  </header>
+
+  <section class="spec-sec">
+    <h2 class="spec-h">CONCEPT</h2>
+    <p class="concept-lead">「幾何学」と「ノート」のあいだ。</p>
+    <ul class="concept-list">
+      <li><b>幾何学のかっこよさ</b>1px の線・番号・点で組み立てる。余白にはストロークアイコン。英字は Space Grotesk、メタは JetBrains Mono。</li>
+      <li><b>ノートの自然さ</b>暖色の紙、赤いマージン線、ドットリーダー、明朝の見出し。読む姿勢を妨げない静けさ。</li>
+      <li><b>グラデーション</b>「藍 → 朱」の1種のみ。1ビュー3箇所まで（1語＋マーク＋タイル1つ）。面積は最小に。</li>
+    </ul>
+  </section>
+
+  <section class="spec-sec">
+    <h2 class="spec-h">TOKENS</h2>
+
+    <p class="tok-label">COLOR</p>
+    <div class="swatches">
+      <div class="swatch"><div class="swatch-fill" style="background:#FBFAF6;border-bottom:1px solid #E3E0D5"></div><div class="swatch-name">PAPER<br>#FBFAF6</div></div>
+      <div class="swatch"><div class="swatch-fill" style="background:#F4F2EB"></div><div class="swatch-name">PAPER-2<br>#F4F2EB</div></div>
+      <div class="swatch"><div class="swatch-fill" style="background:#1D1C18"></div><div class="swatch-name">INK<br>#1D1C18</div></div>
+      <div class="swatch"><div class="swatch-fill" style="background:#55524B"></div><div class="swatch-name">INK-2<br>#55524B</div></div>
+      <div class="swatch"><div class="swatch-fill" style="background:#8B877D"></div><div class="swatch-name">INK-3<br>#8B877D</div></div>
+      <div class="swatch"><div class="swatch-fill" style="background:#E3E0D5"></div><div class="swatch-name">RULE<br>#E3E0D5</div></div>
+      <div class="swatch"><div class="swatch-fill" style="background:#DE8E88"></div><div class="swatch-name">MARGIN<br>#DE8E88</div></div>
+    </div>
+
+    <p class="tok-label">GRADIENT</p>
+    <div class="grads">
+      <div class="grad"><div class="grad-bar" style="background:linear-gradient(135deg,#4353C9 0%,#E0644F 100%)"></div><div class="grad-name"><span>C. INDIGO → VERMILION</span><em>採用案</em></div></div>
+      <div class="grad"><div class="grad-bar" style="background:linear-gradient(135deg,#4353C9 0%,#2FB7C3 100%)"></div><div class="grad-name"><span>A. INDIGO → CYAN</span><span>候補</span></div></div>
+      <div class="grad"><div class="grad-bar" style="background:linear-gradient(135deg,#3A3A3A 0%,#4353C9 100%)"></div><div class="grad-name"><span>B. GRAPHITE → INDIGO</span><span>低め</span></div></div>
+    </div>
+
+    <p class="tok-label">TYPE</p>
+    <div class="type-row">
+      <div class="type-meta">見出し<br>Shippori Mincho B1 600</div>
+      <div class="type-sample-1">幾何学と、ノートのあいだ。</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">本文<br>Zen Kaku Gothic New 400</div>
+      <div class="type-sample-2">設計の論理性と、紙の上の文章のような静けさを両立させる。情報は静的に、かたちは幾何的に。長い文章でも読み疲れない行間と字間を保つ。</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">メタ / ラベル<br>JetBrains Mono 500</div>
+      <div class="type-sample-3">ABOUT — 01 / GEOMETRY × NOTEBOOK / 2026.09.18</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">英字ロゴ<br>Space Grotesk 600</div>
+      <div class="type-sample-4">TARO YAMADA — PORTFOLIO 2026</div>
+    </div>
+  </section>
+
+  <section class="spec-sec">
+    <h2 class="spec-h">PAGE MOCKUP — INDEX / DESKTOP</h2>
+    <div class="frame">
+      <div class="site">
+
+        <header class="site-header">
+          <div class="logo"><span class="logo-mark"></span><span class="logo-text">TARO&nbsp;YAMADA</span></div>
+          <nav class="nav">
+            <a class="is-active" href="#">ABOUT</a>
+            <a href="#">PROJECTS</a>
+            <a href="#">ARTICLES</a>
+            <a href="#">CONTACT</a>
+          </nav>
+        </header>
+
+        <section class="hero">
+          <div class="hero-inner">
+            <p class="hero-kicker reveal">STUDENT ENGINEER — PORTFOLIO 2026</p>
+            <h1 class="hero-title reveal d1">幾何学と、<br>ノートの<em>あいだ</em>。</h1>
+            <p class="hero-en reveal d1">GEOMETRY · NOTEBOOK · GRADIENT</p>
+            <p class="hero-lead reveal d2">設計の論理性と、紙の上の文章のような静けさを両立させる。Astro と Cloudflare で組み立てた、学生エンジニアのための軽い個人サイト。（見出しコピーは仮）</p>
+            <div class="hero-links reveal d3">
+              <a class="btn" href="#">Projects を見る</a>
+              <a class="link is-hover" href="#">経歴とスキル ↗</a>
+            </div>
+          </div>
+          <div class="hero-geo" aria-hidden="true">
+            <div class="geo-grid"></div>
+            <div class="geo-ring"></div>
+            <div class="geo-tile t1">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><rect x="3.5" y="4.5" width="17" height="15"/><polyline points="7.5 9.5 11.5 13 7.5 16.5"/><line x1="13.5" y1="16.5" x2="16.5" y2="16.5"/></svg>
+            </div>
+            <div class="geo-tile t2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"><polyline points="8.5 6.5 3.5 12 8.5 17.5"/><polyline points="15.5 6.5 20.5 12 15.5 17.5"/></svg>
+            </div>
+            <div class="geo-tile t3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M17 3.5a2.1 2.1 0 0 1 3 3L7 19.5l-4 1 1-4L17 3.5z"/></svg>
+            </div>
+            <div class="geo-dot"></div>
+            <div class="geo-arc"></div>
+            <span class="geo-label">GEOMETRIC&nbsp;NOTE&nbsp;—&nbsp;01</span>
+            <span class="plus geo-plus"></span>
+          </div>
+        </section>
+
+        <section class="sec">
+          <header class="sec-head reveal">
+            <span class="sec-num">01</span>
+            <h2 class="sec-title">About</h2>
+            <span class="sec-en">PROFILE</span>
+            <span class="sec-rule"></span>
+            <span class="plus"></span>
+          </header>
+          <div class="about-grid">
+            <div class="about-text note reveal">
+              <p>Web とインフラを軸に、軽く速いシステムと読みやすい文章を両追する学生エンジニア。静的生成・CDN 配信・エッジ実行のような「消えてなくなるインフラ」に関心があります。</p>
+              <p>このサイト自身もその実践で、Markdown で書いた内容を Astro で静的生成し、Cloudflare Workers と R2 で配信しています。装飾は線と点で最小限に、文章は紙のノートのように読みやすく。</p>
+            </div>
+            <dl class="meta note reveal d1">
+              <div class="meta-row"><dt>NAME</dt><span class="meta-dots"></span><dd>山田 太郎</dd></div>
+              <div class="meta-row"><dt>AFFIL</dt><span class="meta-dots"></span><dd>○○大学 情報理工 3年</dd></div>
+              <div class="meta-row"><dt>FIELD</dt><span class="meta-dots"></span><dd>Web / SSG / Cloudflare</dd></div>
+              <div class="meta-row"><dt>LIKES</dt><span class="meta-dots"></span><dd>ノートを書く・図を描く</dd></div>
+            </dl>
+          </div>
+        </section>
+
+        <section class="sec">
+          <header class="sec-head reveal">
+            <span class="sec-num">02</span>
+            <h2 class="sec-title">Works</h2>
+            <span class="sec-en">PROJECTS</span>
+            <span class="sec-rule"></span>
+            <span class="plus"></span>
+          </header>
+          <div class="cards">
+            <article class="card is-hover reveal">
+              <div class="card-top"><span>P-01</span><span>2026</span></div>
+              <h3 class="card-title">MyWeb — このサイト</h3>
+              <p class="card-desc">Astro + Workers + R2 による静的ポートフォリオ。Qiita / はてなブログの記事をビルド時に集約して一覧表示する。</p>
+              <ul class="chips"><li>Astro</li><li>Workers</li><li>R2</li></ul>
+            </article>
+            <article class="card reveal d1">
+              <div class="card-top"><span>P-02</span><span>2025</span></div>
+              <h3 class="card-title">feed-aggregator</h3>
+              <p class="card-desc">複数の技術ブログのフィードを正規化して JSON に吐き出す CLI。型安全なパイプラインを意識して設計。</p>
+              <ul class="chips"><li>TypeScript</li><li>API</li></ul>
+            </article>
+            <article class="card reveal d2">
+              <div class="card-top"><span>P-03</span><span>2025</span></div>
+              <h3 class="card-title">dot-grid-sketch</h3>
+              <p class="card-desc">ドットグリッド上で図形を組み合わせて描く小さな描画ツール。Canvas とキーボード操作の学習も兼ねた製作。</p>
+              <ul class="chips"><li>Canvas</li><li>UI</li></ul>
+            </article>
+            <article class="card reveal d3">
+              <div class="card-top"><span>P-04</span><span>2024</span></div>
+              <h3 class="card-title">campus-notes</h3>
+              <p class="card-desc">講義ノートを Markdown で蓄積し、静的生成して仲間と共有する仕組み。このサイトの設計の原点。</p>
+              <ul class="chips"><li>Markdown</li><li>SSG</li></ul>
+            </article>
+          </div>
+          <p class="cards-note">※ 1枚目のカードがホバー状態（グラデーション枠＋浮上）のサンプル</p>
+        </section>
+
+        <section class="sec">
+          <header class="sec-head reveal">
+            <span class="sec-num">03</span>
+            <h2 class="sec-title">Articles</h2>
+            <span class="sec-en">WRITING</span>
+            <span class="sec-rule"></span>
+            <span class="plus"></span>
+          </header>
+          <p class="sec-note reveal">Qiita とはてなブログに書いた記事を、ビルド時に API / フィードから取得して一覧にしています。</p>
+          <ul class="art-list">
+            <li class="art-row reveal">
+              <span class="badge">QIITA</span>
+              <div class="art-main">
+                <a class="art-title is-hover" href="#">Cloudflare Workers で静的サイトをデプロイするときの勘所</a>
+                <span class="art-tags">Cloudflare / Workers / CI</span>
+              </div>
+              <time class="art-date">2026.09.18</time>
+            </li>
+            <li class="art-row reveal d1">
+              <span class="badge hatena">HATENA</span>
+              <div class="art-main">
+                <a class="art-title" href="#">学内のシステムを観察する — 夏のインフラ日記</a>
+                <span class="art-tags">雑記 / 運用</span>
+              </div>
+              <time class="art-date">2026.08.02</time>
+            </li>
+            <li class="art-row reveal d2">
+              <span class="badge">QIITA</span>
+              <div class="art-main">
+                <a class="art-title" href="#">Astro Content Collections の zod スキーマ設計メモ</a>
+                <span class="art-tags">Astro / TypeScript</span>
+              </div>
+              <time class="art-date">2026.07.21</time>
+            </li>
+            <li class="art-row reveal d3">
+              <span class="badge hatena">HATENA</span>
+              <div class="art-main">
+                <a class="art-title" href="#">紙のノートとエディタのあいだで考えていること</a>
+                <span class="art-tags">雑記</span>
+              </div>
+              <time class="art-date">2026.06.10</time>
+            </li>
+          </ul>
+          <p class="art-more reveal"><a class="link" href="#">ALL ARTICLES →</a></p>
+        </section>
+
+        <div class="foot-grad"></div>
+        <footer class="site-footer">
+          <span>© 2026 TARO YAMADA / BUILT WITH ASTRO &amp; CLOUDFLARE</span>
+          <nav><a href="#">GITHUB</a><a href="#">QIITA</a><a href="#">HATENA</a><a href="#">X</a></nav>
+        </footer>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="spec-sec">
+    <h2 class="spec-h">DARK VARIANT（未採用・参考）</h2>
+    <div class="dark">
+      <p class="d-kicker mono">STUDENT ENGINEER — PORTFOLIO 2026</p>
+      <h3 class="d-title">幾何学と、ノートの<em>あいだ</em>。</h3>
+      <p class="d-lead">紙を「墨色」にひっくり返しただけの同一トークン。グラデーションと赤いマージン線がそのまま効く。今回は不採用。</p>
+      <ul class="d-rows">
+        <li class="d-row">
+          <span class="badge">QIITA</span>
+          <div class="art-main"><a class="art-title" href="#">Cloudflare Workers で静的サイトをデプロイするときの勘所</a></div>
+          <time class="art-date">2026.09.18</time>
+        </li>
+        <li class="d-row">
+          <span class="badge hatena">HATENA</span>
+          <div class="art-main"><a class="art-title" href="#">紙のノートとエディタのあいだで考えていること</a></div>
+          <time class="art-date">2026.06.10</time>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="spec-sec">
+    <h2 class="spec-h">USAGE NOTES</h2>
+    <ul class="usage">
+      <li><b>GRADIENT</b><span>「藍→朱」1種。1ビュー3箇所まで（ヒーローの1語＋ロゴマーク＋幾何タイル1つ）。合計面積を最小に保つ。</span></li>
+      <li><b>GEOMETRY</b><span>幾何要素は 1px の線・点・番号に限定。余白の幾何学領域には 1.5px ストロークの SVG アイコン（terminal / code / pen）を配置。シャドウは原則使わない。</span></li>
+      <li><b>NOTEBOOK</b><span>赤マージン線（本文ブロック左）・ドットリーダー（プロフィール）・破線（記事リスト区切り）で「紙」を示す。</span></li>
+      <li><b>TYPE ROLES</b><span>明朝＝見出し / ゴシック＝本文 / Mono＝メタ情報 / Space Grotesk＝英字ロゴ。役割を混ぜない。</span></li>
+      <li><b>MOTION</b><span>IntersectionObserver ＋ CSS のみ（JS 約15行・ライブラリなし）。fade ＋ 16px 上昇、stagger 70ms、セクション罫線は左から伸びる。prefers-reduced-motion で全無効。</span></li>
+      <li><b>DEPTH</b><span>影ではなく「重なり」で立体感を出す。カード＝オフセット二重枠（積み紙）＋ホバーで浮上、セクション番号＝罫線に跨るタブ、幾何学パターンは本文の背面に回り込む。</span></li>
+      <li><b>RESPONSIVE</b><span>860px 以下は1カラムに崩し、幾何装飾（一部タイル・弧）は間引く。</span></li>
+    </ul>
+  </section>
+
+</div>
+
+<script>
+(() => {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    els.forEach(el => el.classList.add('is-in'));
+    return;
+  }
+  const io = new IntersectionObserver(entries => {
+    for (const e of entries) {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+    }
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  els.forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>
