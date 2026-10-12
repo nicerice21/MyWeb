@@ -1,0 +1,76 @@
+---
+import { SITE } from '../config';
+---
+
+<header class="site-header">
+  <div class="logo">
+    <span class="logo-mark"></span>
+    <span class="logo-text">{SITE.enName}</span>
+  </div>
+  <nav class="nav mono">
+    <a class:list={[{ 'is-active': Astro.url.pathname === '/about' }]} href="/about">ABOUT</a>
+    <a class:list={[{ 'is-active': Astro.url.pathname.startsWith('/projects') }]} href="/projects">PROJECTS</a>
+    <a class:list={[{ 'is-active': Astro.url.pathname === '/articles' }]} href="/articles">ARTICLES</a>
+    <a class:list={[{ 'is-active': Astro.url.pathname === '/contact' }]} href="/contact">CONTACT</a>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 0 18px;
+    border-bottom: 1px solid var(--ink);
+    background: rgba(251, 250, 246, 0.72);
+    -webkit-backdrop-filter: blur(10px) saturate(1.15);
+    backdrop-filter: blur(10px) saturate(1.15);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo-mark {
+    width: 10px;
+    height: 10px;
+    background: var(--grad-a);
+  }
+
+  .logo-text {
+    font-family: var(--disp);
+    font-weight: 600;
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
+  }
+
+  .nav {
+    display: flex;
+    gap: 26px;
+  }
+
+  .nav a {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    color: var(--ink-3);
+    text-decoration: none;
+    padding-bottom: 3px;
+    background-image: var(--grad-a);
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    background-position: 0 100%;
+    transition: background-size 0.25s ease, color 0.25s ease;
+  }
+
+  .nav a:hover,
+  .nav a.is-active {
+    color: var(--ink);
+    background-size: 100% 2px;
+  }
+</style>

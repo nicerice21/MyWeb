@@ -1,0 +1,70 @@
+---
+import { getCollection } from 'astro:content';
+import { SITE } from '../../config';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import Footer from '../../components/Footer.astro';
+
+const projects = await getCollection('projects', (p) => !p.data.draft);
+const sorted = projects.sort((a, b) => new Date(b.data.published).getTime() - new Date(a.data.published).getTime());
+---
+
+<BaseLayout title="Projects" description="制作物一覧">
+  <div class="site">
+    <Header />
+    <main>
+      <section class="sec">
+        <SectionHead num="01" title="Works" en="PROJECTS" />
+        <div class="cards">
+          {sorted.map((p, i) => (
+            <a href={`/projects/${p.slug}`}>
+              <ProjectCard
+                title={p.data.title}
+                index={`P-${String(i + 1).padStart(2, '0')}`}
+                year={p.data.published.getFullYear().toString()}
+                summary={p.data.summary}
+                tags={p.data.tags}
+              />
+            </a>
+          ))}
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>
+
+<style>
+  .site {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .sec {
+    padding: 30px 0 56px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .cards a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  @media (max-width: 860px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+
+    .site {
+      padding: 0 18px;
+    }
+  }
+</style>

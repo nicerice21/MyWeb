@@ -1,0 +1,174 @@
+---
+import { SITE } from '../config';
+import LinkButton from './LinkButton.astro';
+---
+
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-kicker mono">STUDENT ENGINEER — PORTFOLIO 2026</p>
+    <h1 class="hero-title">幾何学と、<br />ノートの<em>あいだ</em>。</h1>
+    <p class="hero-en">GEOMETRY · NOTEBOOK · GRADIENT</p>
+    <p class="hero-lead">設計の論理性と、紙の上の文章のような静けさを両立させる。Astro と Cloudflare で組み立てた、学生エンジニアのための軽い個人サイト。</p>
+    <div class="hero-links">
+      <LinkButton href="/projects" variant="button">Projects を見る</LinkButton>
+      <LinkButton href="/about">経歴とスキル ↗</LinkButton>
+    </div>
+  </div>
+  <div class="hero-geo" aria-hidden="true">
+    <div class="geo-grid"></div>
+    <div class="geo-ring"></div>
+    <div class="geo-dot"></div>
+    <div class="geo-arc"></div>
+    <span class="geo-label mono">GEOMETRIC NOTE — 01</span>
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: flex;
+    gap: 32px;
+    padding: 64px 0 72px;
+  }
+
+  .hero-inner {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    border-left: 1px solid rgba(222, 142, 136, 0.55);
+    padding-left: 30px;
+  }
+
+  .hero-kicker {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.2em;
+    color: var(--ink-3);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-kicker::before {
+    content: "";
+    width: 26px;
+    height: 1px;
+    background: var(--ink-3);
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(1.9rem, 4.4vw, 2.9rem);
+    line-height: 1.42;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    background: var(--grad-a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding-right: 0.06em;
+  }
+
+  .hero-en {
+    font-family: var(--disp);
+    font-weight: 500;
+    font-size: 0.7rem;
+    letter-spacing: 0.26em;
+    color: var(--ink-3);
+    margin-top: 20px;
+  }
+
+  .hero-lead {
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    color: var(--ink-2);
+    line-height: 2.1;
+    max-width: 33em;
+    margin-top: 16px;
+  }
+
+  .hero-links {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    margin-top: 34px;
+  }
+
+  .hero-geo {
+    width: 320px;
+    position: relative;
+    flex-shrink: 0;
+    margin-left: -72px;
+    z-index: 0;
+  }
+
+  .geo-grid {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, #C7C3B4 1px, transparent 1.2px);
+    background-size: 22px 22px;
+    -webkit-mask-image: linear-gradient(205deg, rgba(0, 0, 0, 0.95) 30%, transparent 72%);
+    mask-image: linear-gradient(205deg, rgba(0, 0, 0, 0.95) 30%, transparent 72%);
+  }
+
+  .geo-ring {
+    position: absolute;
+    width: 148px;
+    height: 148px;
+    border-radius: 50%;
+    border: 1px solid #ADA897;
+    top: 44px;
+    left: 96px;
+    background: transparent;
+  }
+
+  .geo-dot {
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--grad-a);
+    top: 116px;
+    left: 90px;
+  }
+
+  .geo-arc {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    border-top-color: var(--ink-3);
+    border-right-color: var(--ink-3);
+    transform: rotate(45deg);
+    top: 190px;
+    left: 30px;
+  }
+
+  .geo-label {
+    position: absolute;
+    top: 8px;
+    right: 0;
+    writing-mode: vertical-rl;
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    color: var(--ink-3);
+  }
+
+  @media (max-width: 860px) {
+    .hero {
+      flex-direction: column;
+    }
+
+    .hero-geo {
+      width: 100%;
+      height: 200px;
+      margin-left: 0;
+    }
+  }
+</style>

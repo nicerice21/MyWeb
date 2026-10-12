@@ -1,7 +1,189 @@
 ---
+import { getCollection } from 'astro:content';
+import { SITE } from '../config';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import SectionHead from '../components/SectionHead.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ArticleRow from '../components/ArticleRow.astro';
+import Footer from '../components/Footer.astro';
+
+const projects = await getCollection('projects', (p) => !p.data.draft);
+const featured = projects
+  .filter((p) => p.data.featured)
+  .sort((a, b) => new Date(b.data.published).getTime() - new Date(a.data.published).getTime())
+  .slice(0, 4);
+
+let articles: any[] = [];
+try {
+  const mod = await import('../data/articles.json');
+  articles = mod.default;
+} catch {}
+
+const about = (await getCollection('about'))[0];
+const aboutContent = about?.rendered?.html || about?.body || '';
 ---
 
-<BaseLayout title="Home" description="Student engineer portfolio">
-  <h1>Coming soon</h1>
+<BaseLayout title="Home" description={`${SITE.name}のポートフォリオ。${about.data.field}`}>
+  <div class="site">
+    <Header />
+    <main>
+      <Hero />
+
+      <section class="sec">
+        <SectionHead num="01" title="About" en="PROFILE" />
+        <div class="about-grid">
+          <div class="about-text note reveal" set:html={aboutContent}></div>
+          <dl class="meta note reveal d1">
+            <div class="meta-row"><dt class="mono">NAME</dt><span class="meta-dots"></span><dd>{about.data.name}</dd></div>
+            <div class="meta-row"><dt class="mono">AFFIL</dt><span class="meta-dots"></span><dd>{about.data.affiliation}</dd></div>
+            <div class="meta-row"><dt class="mono">FIELD</dt><span class="meta-dots"></span><dd>{about.data.field}</dd></div>
+            <div class="meta-row"><dt class="mono">LIKES</dt><span class="meta-dots"></span><dd>{about.data.interests.join(' / ')}</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="sec">
+        <SectionHead num="02" title="Works" en="PROJECTS" />
+        <div class="cards">
+          {featured.map((p, i) => (
+            <a href={`/projects/${p.slug}`}>
+              <ProjectCard
+                title={p.data.title}
+                index={`P-${String(i + 1).padStart(2, '0')}`}
+                year={p.data.published.getFullYear().toString()}
+                summary={p.data.summary}
+                tags={p.data.tags}
+                isHover={i === 0}
+              />
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section class="sec">
+        <SectionHead num="03" title="Articles" en="WRITING" />
+        <p class="sec-note">Qiita とはてなブログに書いた記事を、ビルド時に API / フィードから取得して一覧にしています。</p>
+        <ul class="art-list">
+          {articles.slice(0, 5).map((a, i) => (
+            <ArticleRow article={a} delay={i} />
+          ))}
+        </ul>
+        <p class="art-more"><a class="link mono" href="/articles">ALL ARTICLES →</a></p>
+      </section>
+    </main>
+    <Footer />
+  </div>
 </BaseLayout>
+
+<style>
+  .site {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .sec {
+    padding: 30px 0 56px;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.55fr 1fr;
+    gap: 48px;
+  }
+
+  .note {
+    border-left: 1px solid rgba(222, 142, 136, 0.5);
+    padding-left: 20px;
+  }
+
+  .about-text p {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    line-height: 2.1;
+    margin-bottom: 1.1em;
+  }
+
+  .about-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  .meta-row {
+    display: flex;
+    align-items: baseline;
+    padding: 7px 0;
+  }
+
+  .meta-row dt {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+  }
+
+  .meta-dots {
+    flex: 1;
+    border-bottom: 1px dotted var(--ink-3);
+    margin: 0 0.7em;
+    transform: translateY(-4px);
+    opacity: 0.55;
+  }
+
+  .meta-row dd {
+    font-family: var(--sans);
+    font-size: 0.84rem;
+    font-weight: 500;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .cards a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .sec-note {
+    font-family: var(--sans);
+    font-size: 0.84rem;
+    color: var(--ink-3);
+    margin: -12px 0 22px;
+  }
+
+  .art-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .art-more {
+    margin-top: 24px;
+  }
+
+  .link {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.18em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  @media (max-width: 860px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cards {
+      grid-template-columns: 1fr;
+    }
+
+    .site {
+      padding: 0 18px;
+    }
+  }
+</style>

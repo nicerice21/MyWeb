@@ -1,0 +1,29 @@
+---
+interface Props {
+  source: 'qiita' | 'hatena';
+}
+
+const { source } = Astro.props;
+const label = source.toUpperCase();
+---
+
+<span class:list={['badge', 'mono', { hatena: source === 'hatena' }]}>{label}</span>
+
+<style>
+  .badge {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    color: var(--ink-2);
+    border: 1px solid var(--ink-3);
+    padding: 3px 0;
+    text-align: center;
+    display: inline-block;
+    min-width: 60px;
+  }
+
+  .badge.hatena {
+    border-color: var(--margin-red);
+    color: #C26862;
+  }
+</style>

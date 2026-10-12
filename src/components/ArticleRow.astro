@@ -1,0 +1,75 @@
+---
+interface Props {
+  article: {
+    title: string;
+    url: string;
+    publishedAt: string;
+    source: 'qiita' | 'hatena';
+    tags: string[];
+  };
+  delay?: number;
+}
+
+const { article, delay = 0 } = Astro.props;
+const date = new Date(article.publishedAt);
+const dateStr = date.toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.');
+const delayClass = delay > 0 ? `d${delay}` : '';
+---
+
+<li class:list={['art-row', 'reveal', delayClass]}>
+  <Badge source={article.source} />
+  <div class="art-main">
+    <a class="art-title" href={article.url} rel="noopener">{article.title}</a>
+    <span class="art-tags mono">{article.tags.join(' / ')}</span>
+  </div>
+  <time class="art-date mono">{dateStr}</time>
+</li>
+
+<style>
+  .art-row {
+    display: grid;
+    grid-template-columns: 86px 1fr auto;
+    gap: 18px;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px dotted var(--rule-dot);
+    list-style: none;
+  }
+
+  .art-row:first-child {
+    border-top: 1px dotted var(--rule-dot);
+  }
+
+  .art-title {
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.6;
+  }
+
+  .art-title:hover {
+    background-image: var(--grad-a);
+    background-repeat: no-repeat;
+    background-size: 100% 1.5px;
+    background-position: 0 100%;
+    padding-bottom: 2px;
+  }
+
+  .art-tags {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    margin-top: 5px;
+  }
+
+  .art-date {
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    color: var(--ink-3);
+    letter-spacing: 0.06em;
+  }
+</style>

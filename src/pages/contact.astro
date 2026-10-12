@@ -1,0 +1,98 @@
+---
+import { SITE } from '../config';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Contact" description="連絡先">
+  <div class="site">
+    <Header />
+    <main>
+      <section class="sec">
+        <SectionHead num="01" title="Contact" en="GET IN TOUCH" />
+        <p class="contact-lead">制作や記事について、気軽にどうぞ。</p>
+        <ul class="contact-list">
+          <li><a href={SITE.social.github} class="contact-link" rel="noopener"><span class="contact-label mono">GITHUB</span><span class="contact-value">{SITE.social.github}</span></a></li>
+          <li><a href={SITE.social.x} class="contact-link" rel="noopener"><span class="contact-label mono">X</span><span class="contact-value">{SITE.social.x}</span></a></li>
+          <li><a href={SITE.social.qiita} class="contact-link" rel="noopener"><span class="contact-label mono">QIITA</span><span class="contact-value">{SITE.social.qiita}</span></a></li>
+          <li><a href={SITE.social.hatena} class="contact-link" rel="noopener"><span class="contact-label mono">HATENA</span><span class="contact-value">{SITE.social.hatena}</span></a></li>
+          <li><a href={SITE.social.email} class="contact-link"><span class="contact-label mono">EMAIL</span><span class="contact-value">{SITE.social.email}</span></a></li>
+        </ul>
+      </section>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>
+
+<style>
+  .site {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .sec {
+    padding: 30px 0 56px;
+  }
+
+  .contact-lead {
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    color: var(--ink-2);
+    margin-bottom: 32px;
+  }
+
+  .contact-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .contact-link {
+    display: flex;
+    gap: 24px;
+    padding: 16px 0;
+    border-bottom: 1px dotted var(--rule-dot);
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+  }
+
+  .contact-link:hover {
+    color: var(--ink);
+  }
+
+  .contact-label {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+    min-width: 80px;
+  }
+
+  .contact-value {
+    font-family: var(--sans);
+    font-size: 0.84rem;
+    color: var(--ink-2);
+  }
+
+  .contact-link:hover .contact-value {
+    color: var(--ink);
+    background-image: var(--grad-a);
+    background-repeat: no-repeat;
+    background-size: 100% 1.5px;
+    background-position: 0 100%;
+  }
+
+  @media (max-width: 860px) {
+    .contact-link {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .site {
+      padding: 0 18px;
+    }
+  }
+</style>

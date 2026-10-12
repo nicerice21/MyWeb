@@ -1,0 +1,189 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects', (p) => !p.data.draft);
+  return projects.map((p) => {
+    const slug = p.id.replace(/\.md$/, '').split('/').pop() || p.id;
+    return {
+      params: { slug },
+      props: { entry: p },
+    };
+  });
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+const content = entry.rendered?.html || entry.body || '';
+---
+
+<BaseLayout title={data.title} description={data.summary}>
+  <div class="site">
+    <Header />
+    <main class="project-main">
+      <article>
+        <header class="project-header reveal">
+          <div class="project-meta mono">
+            <span>{data.published.getFullYear()}</span>
+            <span>{data.tags.join(' / ')}</span>
+          </div>
+          <h1 class="project-title">{data.title}</h1>
+          <p class="project-summary">{data.summary}</p>
+          <div class="project-links">
+            {data.repo && <a href={data.repo} class="link" rel="noopener">REPOSITORY ↗</a>}
+            {data.demo && <a href={data.demo} class="link" rel="noopener">DEMO ↗</a>}
+          </div>
+        </header>
+        <div class="project-body reveal d1" set:html={content}></div>
+        {data.relatedArticles && data.relatedArticles.length > 0 && (
+          <div class="related reveal d2">
+            <h3 class="related-title mono">RELATED ARTICLES</h3>
+            <ul class="related-list">
+              {data.relatedArticles.map((a) => (
+                <li><a href={a.url} class="link" rel="noopener">{a.title}</a></li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </article>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>
+
+<style>
+  .site {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .project-main {
+    padding: 48px 0 72px;
+  }
+
+  .project-header {
+    border-left: 1px solid rgba(222, 142, 136, 0.55);
+    padding-left: 30px;
+    margin-bottom: 48px;
+  }
+
+  .project-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+    margin-bottom: 16px;
+  }
+
+  .project-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+
+  .project-summary {
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    color: var(--ink-2);
+    line-height: 1.9;
+    margin-bottom: 24px;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  .link {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .link:hover {
+    background-image: var(--grad-a);
+    background-repeat: no-repeat;
+    background-size: 100% 1.5px;
+    background-position: 0 100%;
+  }
+
+  .project-body {
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    line-height: 2.1;
+    color: var(--ink-2);
+  }
+
+  .project-body h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.28rem;
+    color: var(--ink);
+    margin-top: 2em;
+    margin-bottom: 0.8em;
+  }
+
+  .project-body p {
+    margin-bottom: 1.2em;
+  }
+
+  .project-body code {
+    font-family: var(--mono);
+    font-size: 0.85em;
+    background: var(--paper-2);
+    padding: 2px 6px;
+    border-radius: 2px;
+  }
+
+  .project-body pre {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 16px;
+    overflow-x: auto;
+    margin: 1.2em 0;
+  }
+
+  .project-body pre code {
+    background: transparent;
+    padding: 0;
+  }
+
+  .related {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .related-title {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.2em;
+    color: var(--ink-3);
+    margin-bottom: 16px;
+  }
+
+  .related-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .related-list li {
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--rule-dot);
+  }
+
+  @media (max-width: 860px) {
+    .site {
+      padding: 0 18px;
+    }
+  }
+</style>

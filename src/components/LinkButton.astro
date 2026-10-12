@@ -1,0 +1,54 @@
+---
+export type LinkProps = {
+  href: string;
+  children: string;
+  variant?: 'link' | 'button';
+  className?: string;
+};
+
+const { href, children, variant = 'link', className = '' } = Astro.props;
+---
+
+{
+  variant === 'button' ? (
+    <a href={href} class:list={['btn', className]}>{children}</a>
+  ) : (
+    <a href={href} class:list={['link', className]}>{children}</a>
+  )
+}
+
+<style>
+  .btn {
+    display: inline-block;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 10px 24px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .btn:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .link {
+    color: var(--ink);
+    text-decoration: none;
+    font-family: var(--sans);
+    font-size: 0.84rem;
+    padding-bottom: 2px;
+    background-image: var(--grad-a);
+    background-repeat: no-repeat;
+    background-size: 0% 1.5px;
+    background-position: 0 100%;
+    transition: background-size 0.3s ease;
+  }
+
+  .link:hover {
+    background-size: 100% 1.5px;
+  }
+</style>

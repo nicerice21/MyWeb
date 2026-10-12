@@ -1,0 +1,48 @@
+---
+import { SITE } from '../config';
+---
+
+<div class="foot-grad"></div>
+<footer class="site-footer">
+  <span class="mono">© 2026 {SITE.enName} / BUILT WITH ASTRO &amp; CLOUDFLARE</span>
+  <nav class="mono">
+    <a href={SITE.social.github}>GITHUB</a>
+    <a href={SITE.social.qiita}>QIITA</a>
+    <a href={SITE.social.hatena}>HATENA</a>
+    <a href={SITE.social.x}>X</a>
+  </nav>
+</footer>
+
+<style>
+  .foot-grad {
+    height: 2px;
+    width: 64px;
+    background: var(--grad-a);
+    margin: 76px auto 0;
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--ink);
+    padding: 22px 0 30px;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+  }
+
+  .site-footer nav {
+    display: flex;
+    gap: 20px;
+  }
+
+  .site-footer nav a {
+    color: var(--ink-2);
+    text-decoration: none;
+  }
+
+  .site-footer nav a:hover {
+    color: var(--ink);
+  }
+</style>

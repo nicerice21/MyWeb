@@ -1,0 +1,159 @@
+---
+import { getCollection, render } from 'astro:content';
+import { SITE } from '../config';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Footer from '../components/Footer.astro';
+
+const about = (await getCollection('about'))[0];
+
+if (!about) {
+  throw new Error('About content not found');
+}
+
+// In Astro 5 with glob loader, access rendered content directly
+const content = about.rendered?.html || about.body || '';
+---
+
+<BaseLayout title="About" description={`${SITE.name}のプロフィール`}>
+  <div class="site">
+    <Header />
+    <main>
+      <section class="sec">
+        <SectionHead num="01" title="About" en="PROFILE" />
+        <div class="about-grid">
+          <div class="about-text note reveal" set:html={content}></div>
+          <div class="about-sidebar">
+            <dl class="meta note reveal d1">
+              <div class="meta-row"><dt class="mono">NAME</dt><span class="meta-dots"></span><dd>{about.data.name}</dd></div>
+              <div class="meta-row"><dt class="mono">AFFIL</dt><span class="meta-dots"></span><dd>{about.data.affiliation}</dd></div>
+              <div class="meta-row"><dt class="mono">FIELD</dt><span class="meta-dots"></span><dd>{about.data.field}</dd></div>
+              <div class="meta-row"><dt class="mono">LIKES</dt><span class="meta-dots"></span><dd>{about.data.interests.join(' / ')}</dd></div>
+            </dl>
+
+            <div class="history reveal d2">
+              <h3 class="history-title mono">HISTORY</h3>
+              <ul class="history-list">
+                {about.data.history.map((h) => (
+                  <li><span class="history-year mono">{h.year}</span><span class="history-event">{h.event}</span></li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>
+
+<style>
+  .site {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .sec {
+    padding: 30px 0 56px;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.55fr 1fr;
+    gap: 48px;
+  }
+
+  .note {
+    border-left: 1px solid rgba(222, 142, 136, 0.5);
+    padding-left: 20px;
+  }
+
+  .about-text p {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    line-height: 2.1;
+    margin-bottom: 1.1em;
+  }
+
+  .about-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  .meta-row {
+    display: flex;
+    align-items: baseline;
+    padding: 7px 0;
+  }
+
+  .meta-row dt {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+  }
+
+  .meta-dots {
+    flex: 1;
+    border-bottom: 1px dotted var(--ink-3);
+    margin: 0 0.7em;
+    transform: translateY(-4px);
+    opacity: 0.55;
+  }
+
+  .meta-row dd {
+    font-family: var(--sans);
+    font-size: 0.84rem;
+    font-weight: 500;
+  }
+
+  .history {
+    margin-top: 32px;
+  }
+
+  .history-title {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.2em;
+    color: var(--ink-3);
+    margin-bottom: 16px;
+  }
+
+  .history-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .history-list li {
+    display: flex;
+    gap: 16px;
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--rule-dot);
+  }
+
+  .history-year {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+    min-width: 48px;
+  }
+
+  .history-event {
+    font-family: var(--sans);
+    font-size: 0.84rem;
+    color: var(--ink-2);
+  }
+
+  @media (max-width: 860px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .site {
+      padding: 0 18px;
+    }
+  }
+</style>

@@ -1,0 +1,91 @@
+---
+interface Props {
+  num: string;
+  title: string;
+  en: string;
+  className?: string;
+}
+
+const { num, title, en, className = '' } = Astro.props;
+---
+
+<header class:list={['sec-head', 'reveal', className]}>
+  <span class="sec-num mono">{num}</span>
+  <h2 class="sec-title">{title}</h2>
+  <span class="sec-en mono">{en}</span>
+  <span class="sec-rule"></span>
+  <span class="plus"></span>
+</header>
+
+<style>
+  .sec-head {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    border-bottom: 1px solid var(--ink);
+    padding: 0 0 10px 56px;
+    margin-bottom: 36px;
+  }
+
+  .sec-num {
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-2);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 2px 9px;
+  }
+
+  .sec-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.28rem;
+  }
+
+  .sec-en {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.24em;
+    color: var(--ink-3);
+  }
+
+  .sec-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--ink);
+  }
+
+  .plus {
+    position: relative;
+    width: 9px;
+    height: 9px;
+    display: inline-block;
+    transform: translateY(-2px);
+  }
+
+  .plus::before,
+  .plus::after {
+    content: "";
+    position: absolute;
+    background: var(--ink-3);
+  }
+
+  .plus::before {
+    left: 4px;
+    top: 0;
+    width: 1px;
+    height: 9px;
+  }
+
+  .plus::after {
+    top: 4px;
+    left: 0;
+    height: 1px;
+    width: 9px;
+  }
+</style>

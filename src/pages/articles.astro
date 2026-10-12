@@ -1,0 +1,150 @@
+---
+import { SITE } from '../config';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Footer from '../components/Footer.astro';
+
+let articles: any[] = [];
+try {
+  const mod = await import('../data/articles.json');
+  articles = mod.default;
+} catch {}
+---
+
+<BaseLayout title="Articles" description="Qiita・はてなブログの記事一覧">
+  <div class="site">
+    <Header />
+    <main>
+      <section class="sec">
+        <SectionHead num="01" title="Articles" en="WRITING" />
+        <p class="sec-note">Qiita とはてなブログに書いた記事を、ビルド時に API / フィードから取得して一覧にしています。</p>
+        <ul class="art-list">
+          {articles.map((a, i) => (
+            <li class:list={['art-row', 'reveal', { d1: i === 1, d2: i === 2, d3: i === 3 }]}>
+              <span class:list={['badge', 'mono', { hatena: a.source === 'hatena' }]}>{a.source.toUpperCase()}</span>
+              <div class="art-main">
+                <a class="art-title" href={a.url} rel="noopener">{a.title}</a>
+                <span class="art-tags mono">{a.tags.join(' / ')}</span>
+              </div>
+              <time class="art-date mono">{new Date(a.publishedAt).toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.')}</time>
+            </li>
+          ))}
+        </ul>
+        {articles.length === 0 && <p class="empty-note">記事はまだありません。Qiita または はてなブログに投稿すると、次回ビルド時に反映されます。</p>}
+      </section>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>
+
+<style>
+  .site {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .sec {
+    padding: 30px 0 56px;
+  }
+
+  .sec-note {
+    font-family: var(--sans);
+    font-size: 0.84rem;
+    color: var(--ink-3);
+    margin: -12px 0 22px;
+  }
+
+  .art-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .art-row {
+    display: grid;
+    grid-template-columns: 86px 1fr auto;
+    gap: 18px;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px dotted var(--rule-dot);
+  }
+
+  .art-row:first-child {
+    border-top: 1px dotted var(--rule-dot);
+  }
+
+  .badge {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    color: var(--ink-2);
+    border: 1px solid var(--ink-3);
+    padding: 3px 0;
+    text-align: center;
+    display: inline-block;
+    min-width: 60px;
+  }
+
+  .badge.hatena {
+    border-color: var(--margin-red);
+    color: #C26862;
+  }
+
+  .art-title {
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 1.6;
+  }
+
+  .art-title:hover {
+    background-image: var(--grad-a);
+    background-repeat: no-repeat;
+    background-size: 100% 1.5px;
+    background-position: 0 100%;
+    padding-bottom: 2px;
+  }
+
+  .art-tags {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    margin-top: 5px;
+  }
+
+  .art-date {
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    color: var(--ink-3);
+    letter-spacing: 0.06em;
+  }
+
+  .empty-note {
+    font-family: var(--sans);
+    font-size: 0.84rem;
+    color: var(--ink-3);
+    font-style: italic;
+    padding: 32px 0;
+    text-align: center;
+  }
+
+  @media (max-width: 860px) {
+    .art-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .art-date {
+      justify-self: start;
+    }
+
+    .site {
+      padding: 0 18px;
+    }
+  }
+</style>

@@ -1,0 +1,39 @@
+---
+interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+---
+
+<span class={`plus ${className}`} aria-hidden="true"></span>
+
+<style>
+  .plus {
+    position: relative;
+    width: 9px;
+    height: 9px;
+    display: inline-block;
+  }
+
+  .plus::before,
+  .plus::after {
+    content: "";
+    position: absolute;
+    background: var(--ink-3);
+  }
+
+  .plus::before {
+    left: 4px;
+    top: 0;
+    width: 1px;
+    height: 9px;
+  }
+
+  .plus::after {
+    top: 4px;
+    left: 0;
+    height: 1px;
+    width: 9px;
+  }
+</style>
