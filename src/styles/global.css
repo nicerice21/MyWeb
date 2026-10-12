@@ -1,3 +1,116 @@
 :root {
-  /* Design tokens will be added in Task 2 */
+  /* Color */
+  --paper: #FBFAF6;
+  --paper-2: #F4F2EB;
+  --ink: #1D1C18;
+  --ink-2: #55524B;
+  --ink-3: #8B877D;
+  --rule: #E3E0D5;
+  --rule-dot: #C9C5B8;
+  --margin-red: #DE8E88;
+
+  /* Gradient (blue→vermilion) */
+  --grad-a: linear-gradient(135deg, #4353C9 0%, #E0644F 100%);
+  --grad-a-start: #4353C9;
+  --grad-a-end: #E0644F;
+
+  /* Fonts */
+  --serif: "Shippori Mincho B1", "Hiragino Mincho ProN", serif;
+  --sans: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif;
+  --mono: "JetBrains Mono", Consolas, monospace;
+  --disp: "Space Grotesk", var(--sans);
+
+  /* Spacing */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 72px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+/* Typography scale */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Reveal animation (JS required) */
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+html.js .reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+html.js .reveal.d1 { transition-delay: 0.07s; }
+html.js .reveal.d2 { transition-delay: 0.14s; }
+html.js .reveal.d3 { transition-delay: 0.21s; }
+html.js .reveal.d4 { transition-delay: 0.28s; }
+
+html.js .sec-head .sec-rule {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.15s;
+}
+
+html.js .sec-head.is-in .sec-rule {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal,
+  html.js .sec-head .sec-rule {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .site-header,
+  .geo-tile,
+  .card,
+  .glass-sample {
+    background: var(--paper) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .geo-tile.t2,
+  .glass-sample.s2 {
+    background: var(--grad-a) !important;
+  }
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
 }

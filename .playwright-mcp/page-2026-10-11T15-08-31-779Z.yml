@@ -1,0 +1,234 @@
+- generic [ref=f1e2]:
+  - banner [ref=f1e3]:
+    - generic [ref=f1e4]: MYWEB — DESIGN MOCKUP v0.1
+    - generic [ref=f1e5]: 2026-10-12 / ※人名・プロジェクト名・記事名はすべてサンプル
+  - generic [ref=f1e6]:
+    - heading "CONCEPT" [level=2] [ref=f1e7]
+    - paragraph [ref=f1e8]: 「幾何学」と「ノート」のあいだ。
+    - list [ref=f1e9]:
+      - listitem [ref=f1e10]:
+        - generic [ref=f1e11]: 幾何学のかっこよさ
+        - text: 1px の線・番号・点で組み立てる。英字は Space Grotesk、メタ情報は JetBrains Mono。
+      - listitem [ref=f1e12]:
+        - generic [ref=f1e13]: ノートの自然さ
+        - text: 暖色の紙、赤いマージン線、ドットリーダー、明朝の見出し。読む姿勢を妨げない静けさ。
+      - listitem [ref=f1e14]:
+        - generic [ref=f1e15]: グラデーション
+        - text: 「藍 → シアン」の1種のみ。1ビュー2箇所まで。面ではなく線と1語に使う。
+  - generic [ref=f1e16]:
+    - heading "TOKENS" [level=2] [ref=f1e17]
+    - paragraph [ref=f1e18]: COLOR
+    - generic [ref=f1e19]:
+      - generic [ref=f1e20]: PAPER#FBFAF6
+      - generic [ref=f1e23]: PAPER-2#F4F2EB
+      - generic [ref=f1e26]: INK#1D1C18
+      - generic [ref=f1e29]: INK-2#55524B
+      - generic [ref=f1e32]: INK-3#8B877D
+      - generic [ref=f1e35]: RULE#E3E0D5
+      - generic [ref=f1e38]: MARGIN#DE8E88
+    - paragraph [ref=f1e41]: GRADIENT
+    - generic [ref=f1e42]:
+      - generic [ref=f1e45]:
+        - generic [ref=f1e46]: A. INDIGO → CYAN
+        - emphasis [ref=f1e47]: 採用案
+      - generic [ref=f1e50]:
+        - generic [ref=f1e51]: B. GRAPHITE → INDIGO
+        - generic [ref=f1e52]: 低め
+      - generic [ref=f1e55]:
+        - generic [ref=f1e56]: C. INDIGO → VERMILION
+        - generic [ref=f1e57]: 高め
+    - paragraph [ref=f1e58]: TYPE
+    - generic [ref=f1e59]:
+      - generic [ref=f1e60]: 見出しShippori Mincho B1 600
+      - generic [ref=f1e61]: 幾何学と、ノートのあいだ。
+    - generic [ref=f1e62]:
+      - generic [ref=f1e63]: 本文Zen Kaku Gothic New 400
+      - generic [ref=f1e64]: 設計の論理性と、紙の上の文章のような静けさを両立させる。情報は静的に、かたちは幾何的に。長い文章でも読み疲れない行間と字間を保つ。
+    - generic [ref=f1e65]:
+      - generic [ref=f1e66]: メタ / ラベルJetBrains Mono 500
+      - generic [ref=f1e67]: ABOUT — 01 / GEOMETRY × NOTEBOOK / 2026.09.18
+    - generic [ref=f1e68]:
+      - generic [ref=f1e69]: 英字ロゴSpace Grotesk 600
+      - generic [ref=f1e70]: TARO YAMADA — PORTFOLIO 2026
+  - generic [ref=f1e71]:
+    - heading "PAGE MOCKUP — INDEX / DESKTOP" [level=2] [ref=f1e72]
+    - generic [ref=f1e74]:
+      - generic [ref=f1e75]:
+        - generic [ref=f1e76]: TARO YAMADA
+        - navigation [ref=f1e79]:
+          - link "ABOUT" [ref=f1e80] [cursor=pointer]:
+            - /url: "#"
+          - link "PROJECTS" [ref=f1e81] [cursor=pointer]:
+            - /url: "#"
+          - link "ARTICLES" [ref=f1e82] [cursor=pointer]:
+            - /url: "#"
+          - link "CONTACT" [ref=f1e83] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=f1e84]:
+        - generic [ref=f1e85]:
+          - paragraph [ref=f1e86]: STUDENT ENGINEER — PORTFOLIO 2026
+          - heading [level=1] [ref=f1e87]:
+            - text: 幾何学と、ノートの
+            - emphasis [ref=f1e88]: あいだ
+            - text: 。
+          - paragraph [ref=f1e89]: GEOMETRY · NOTEBOOK · GRADIENT
+          - paragraph [ref=f1e90]: 設計の論理性と、紙の上の文章のような静けさを両立させる。Astro と Cloudflare で組み立てた、学生エンジニアのための軽い個人サイト。（見出しコピーは仮）
+          - generic [ref=f1e91]:
+            - link "Projects を見る" [ref=f1e92] [cursor=pointer]:
+              - /url: "#"
+            - link "経歴とスキル ↗" [ref=f1e93] [cursor=pointer]:
+              - /url: "#"
+        - generic [ref=f1e99]: GEOMETRIC NOTE — 01
+      - generic [ref=f1e101]:
+        - generic [ref=f1e102]:
+          - generic [ref=f1e103]: "01"
+          - heading "About" [level=2] [ref=f1e104]
+          - generic [ref=f1e105]: PROFILE
+        - generic [ref=f1e107]:
+          - generic [ref=f1e108]:
+            - paragraph [ref=f1e109]: Web とインフラを軸に、軽く速いシステムと読みやすい文章を両追する学生エンジニア。静的生成・CDN 配信・エッジ実行のような「消えてなくなるインフラ」に関心があります。
+            - paragraph [ref=f1e110]: このサイト自身もその実践で、Markdown で書いた内容を Astro で静的生成し、Cloudflare Workers と R2 で配信しています。装飾は線と点で最小限に、文章は紙のノートのように読みやすく。
+          - generic [ref=f1e111]:
+            - generic [ref=f1e112]:
+              - term [ref=f1e113]: NAME
+              - definition [ref=f1e115]: 山田 太郎
+            - generic [ref=f1e116]:
+              - term [ref=f1e117]: AFFIL
+              - definition [ref=f1e119]: ○○大学 情報理工 3年
+            - generic [ref=f1e120]:
+              - term [ref=f1e121]: FIELD
+              - definition [ref=f1e123]: Web / SSG / Cloudflare
+            - generic [ref=f1e124]:
+              - term [ref=f1e125]: LIKES
+              - definition [ref=f1e127]: ノートを書く・図を描く
+      - generic [ref=f1e128]:
+        - generic [ref=f1e129]:
+          - generic [ref=f1e130]: "02"
+          - heading "Works" [level=2] [ref=f1e131]
+          - generic [ref=f1e132]: PROJECTS
+        - generic [ref=f1e134]:
+          - article [ref=f1e135]:
+            - generic [ref=f1e136]:
+              - generic [ref=f1e137]: P-01
+              - generic [ref=f1e138]: "2026"
+            - heading "MyWeb — このサイト" [level=3] [ref=f1e139]
+            - paragraph [ref=f1e140]: Astro + Workers + R2 による静的ポートフォリオ。Qiita / はてなブログの記事をビルド時に集約して一覧表示する。
+            - list [ref=f1e141]:
+              - listitem [ref=f1e142]: Astro
+              - listitem [ref=f1e143]: Workers
+              - listitem [ref=f1e144]: R2
+          - article [ref=f1e145]:
+            - generic [ref=f1e146]:
+              - generic [ref=f1e147]: P-02
+              - generic [ref=f1e148]: "2025"
+            - heading "feed-aggregator" [level=3] [ref=f1e149]
+            - paragraph [ref=f1e150]: 複数の技術ブログのフィードを正規化して JSON に吐き出す CLI。型安全なパイプラインを意識して設計。
+            - list [ref=f1e151]:
+              - listitem [ref=f1e152]: TypeScript
+              - listitem [ref=f1e153]: API
+          - article [ref=f1e154]:
+            - generic [ref=f1e155]:
+              - generic [ref=f1e156]: P-03
+              - generic [ref=f1e157]: "2025"
+            - heading "dot-grid-sketch" [level=3] [ref=f1e158]
+            - paragraph [ref=f1e159]: ドットグリッド上で図形を組み合わせて描く小さな描画ツール。Canvas とキーボード操作の学習も兼ねた製作。
+            - list [ref=f1e160]:
+              - listitem [ref=f1e161]: Canvas
+              - listitem [ref=f1e162]: UI
+          - article [ref=f1e163]:
+            - generic [ref=f1e164]:
+              - generic [ref=f1e165]: P-04
+              - generic [ref=f1e166]: "2024"
+            - heading "campus-notes" [level=3] [ref=f1e167]
+            - paragraph [ref=f1e168]: 講義ノートを Markdown で蓄積し、静的生成して仲間と共有する仕組み。このサイトの設計の原点。
+            - list [ref=f1e169]:
+              - listitem [ref=f1e170]: Markdown
+              - listitem [ref=f1e171]: SSG
+        - paragraph [ref=f1e172]: ※ 1枚目のカードがホバー状態（グラデーション枠）のサンプル
+      - generic [ref=f1e173]:
+        - generic [ref=f1e174]:
+          - generic [ref=f1e175]: "03"
+          - heading "Articles" [level=2] [ref=f1e176]
+          - generic [ref=f1e177]: WRITING
+        - paragraph [ref=f1e179]: Qiita とはてなブログに書いた記事を、ビルド時に API / フィードから取得して一覧にしています。
+        - list [ref=f1e180]:
+          - listitem [ref=f1e181]:
+            - generic [ref=f1e182]: QIITA
+            - generic [ref=f1e183]:
+              - link "Cloudflare Workers で静的サイトをデプロイするときの勘所" [ref=f1e184] [cursor=pointer]:
+                - /url: "#"
+              - generic [ref=f1e185]: Cloudflare / Workers / CI
+            - time [ref=f1e186]: 2026.09.18
+          - listitem [ref=f1e187]:
+            - generic [ref=f1e188]: HATENA
+            - generic [ref=f1e189]:
+              - link "学内のシステムを観察する — 夏のインフラ日記" [ref=f1e190] [cursor=pointer]:
+                - /url: "#"
+              - generic [ref=f1e191]: 雑記 / 運用
+            - time [ref=f1e192]: 2026.08.02
+          - listitem [ref=f1e193]:
+            - generic [ref=f1e194]: QIITA
+            - generic [ref=f1e195]:
+              - link "Astro Content Collections の zod スキーマ設計メモ" [ref=f1e196] [cursor=pointer]:
+                - /url: "#"
+              - generic [ref=f1e197]: Astro / TypeScript
+            - time [ref=f1e198]: 2026.07.21
+          - listitem [ref=f1e199]:
+            - generic [ref=f1e200]: HATENA
+            - generic [ref=f1e201]:
+              - link "紙のノートとエディタのあいだで考えていること" [ref=f1e202] [cursor=pointer]:
+                - /url: "#"
+              - generic [ref=f1e203]: 雑記
+            - time [ref=f1e204]: 2026.06.10
+        - paragraph [ref=f1e205]:
+          - link "ALL ARTICLES →" [ref=f1e206] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=f1e208]:
+        - generic [ref=f1e209]: © 2026 TARO YAMADA / BUILT WITH ASTRO & CLOUDFLARE
+        - navigation [ref=f1e210]:
+          - link "GITHUB" [ref=f1e211] [cursor=pointer]:
+            - /url: "#"
+          - link "QIITA" [ref=f1e212] [cursor=pointer]:
+            - /url: "#"
+          - link "HATENA" [ref=f1e213] [cursor=pointer]:
+            - /url: "#"
+          - link "X" [ref=f1e214] [cursor=pointer]:
+            - /url: "#"
+  - generic [ref=f1e215]:
+    - heading "DARK VARIANT（参考）" [level=2] [ref=f1e216]
+    - generic [ref=f1e217]:
+      - paragraph [ref=f1e218]: STUDENT ENGINEER — PORTFOLIO 2026
+      - heading [level=3] [ref=f1e219]:
+        - text: 幾何学と、ノートの
+        - emphasis [ref=f1e220]: あいだ
+        - text: 。
+      - paragraph [ref=f1e221]: 紙を「墨色」にひっくり返しただけの同一トークン。グラデーションと赤いマージン線がそのまま効く。
+      - list [ref=f1e222]:
+        - listitem [ref=f1e223]:
+          - generic [ref=f1e224]: QIITA
+          - link "Cloudflare Workers で静的サイトをデプロイするときの勘所" [ref=f1e226] [cursor=pointer]:
+            - /url: "#"
+          - time [ref=f1e227]: 2026.09.18
+        - listitem [ref=f1e228]:
+          - generic [ref=f1e229]: HATENA
+          - link "紙のノートとエディタのあいだで考えていること" [ref=f1e231] [cursor=pointer]:
+            - /url: "#"
+          - time [ref=f1e232]: 2026.06.10
+  - generic [ref=f1e233]:
+    - heading "USAGE NOTES" [level=2] [ref=f1e234]
+    - list [ref=f1e235]:
+      - listitem [ref=f1e236]:
+        - generic [ref=f1e237]: GRADIENT
+        - generic [ref=f1e238]: "1ビュー2箇所まで（現在: ヒーローの1語＋ロゴマーク）。ホバー下線・フッターマークは面積最小の補助扱い。"
+      - listitem [ref=f1e239]:
+        - generic [ref=f1e240]: GEOMETRY
+        - generic [ref=f1e241]: 幾何要素は 1px の線・点・番号に限定。ドットグリッドはヒーロー右手のみ。シャドウ原則使わない。
+      - listitem [ref=f1e242]:
+        - generic [ref=f1e243]: NOTEBOOK
+        - generic [ref=f1e244]: 赤マージン線（本文ブロック左）・ドットリーダー（プロフィール）・破線（記事リスト区切り）で「紙」を示す。
+      - listitem [ref=f1e245]:
+        - generic [ref=f1e246]: TYPE ROLES
+        - generic [ref=f1e247]: 明朝＝見出し / ゴシック＝本文 / Mono＝メタ情報 / Space Grotesk＝英字ロゴ。役割を混ぜない。
+      - listitem [ref=f1e248]:
+        - generic [ref=f1e249]: RESPONSIVE
+        - generic [ref=f1e250]: 860px 以下は1カラムに崩す。幾何装飾（hero-geo）は間引くか非表示。

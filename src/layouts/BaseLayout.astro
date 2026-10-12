@@ -15,6 +15,24 @@ const { title, description = 'Student engineer portfolio' } = Astro.props;
     <meta name="description" content={description} />
     <title>{title} — MyWeb</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+    <script>
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-in');
+              io.unobserve(entry.target);
+            }
+          }
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+      );
+
+      document.querySelectorAll('.reveal, .sec-head').forEach((el) => io.observe(el));
+    </script>
   </head>
   <body>
     <slot />
@@ -23,4 +41,10 @@ const { title, description = 'Student engineer portfolio' } = Astro.props;
 
 <style is:global>
   @import '../styles/global.css';
+  @import '@fontsource/shippori-mincho-b1/600.css';
+  @import '@fontsource/zen-kaku-gothic-new/400.css';
+  @import '@fontsource/zen-kaku-gothic-new/500.css';
+  @import '@fontsource/jetbrains-mono/400.css';
+  @import '@fontsource/jetbrains-mono/500.css';
+  @import '@fontsource/space-grotesk/600.css';
 </style>
