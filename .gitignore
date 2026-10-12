@@ -5,3 +5,4 @@ dist/
 .env.local
 src/data/articles.json
 *.local
+.playwright-mcp/
