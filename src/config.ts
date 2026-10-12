@@ -1,18 +1,18 @@
 export const SITE = {
-  name: '山田 太郎',
-  enName: 'TARO YAMADA',
-  domain: 'https://example.com',
+  name: 'NiceRice',
+  enName: 'NiceRice',
+  domain: 'https://ricezero.fun',
   social: {
-    github: 'https://github.com/xxx',
-    x: 'https://x.com/xxx',
-    qiita: 'https://qiita.com/xxx',
-    hatena: 'https://xxx.hatenablog.com',
-    email: 'mailto:xxx@example.com',
+    github: 'https://github.com/nicerice21',
+    x: 'https://x.com/ricezero21',
+    qiita: 'https://qiita.com/RiceZero',
+    hatena: 'https://nicerice21.hatenablog.com',
+    email: 'mailto:hello@ricezero.fun',
   },
 };
 
 export const SOURCES = {
-  qiitaUserId: 'xxx',
-  hatenaBlogOrigin: 'xxx.hatenablog.com',
+  qiitaUserId: 'RiceZero',
+  hatenaBlogOrigin: 'nicerice21.hatenablog.com',
   qiitaTokenEnv: 'QIITA_ACCESS_TOKEN',
 };

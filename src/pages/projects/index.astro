@@ -16,10 +16,10 @@ const sorted = projects.sort((a, b) => new Date(b.data.published).getTime() - ne
     <Header />
     <main>
       <section class="sec">
-        <SectionHead num="01" title="Works" en="PROJECTS" />
+        <SectionHead title="Works" en="PROJECTS" />
         <div class="cards">
           {sorted.map((p, i) => (
-            <a href={`/projects/${p.slug}`}>
+            <a href={`/projects/${p.id.replace(/\.md$/, '').split('/').pop() || p.id}`}>
               <ProjectCard
                 title={p.data.title}
                 index={`P-${String(i + 1).padStart(2, '0')}`}

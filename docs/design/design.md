@@ -1,7 +1,7 @@
 # デザイン仕様 — MyWeb ポートフォリオ
 
 - 更新日: 2026-10-12
-- ステータス: 確定（v0.3 時点の仕様）
+- ステータス: 確定（v0.4 時点の仕様）
 - ビジュアルの一次資料: [mockup.html](./mockup.html)（トークン・コンポーネント・アニメーションの動く見本）
 - 関連: [../architecture.md](../architecture.md)（技術構成）
 
@@ -11,7 +11,7 @@
 
 | 原則 | 内容 |
 | --- | --- |
-| 幾何学のかっこよさ | 1px の線・番号・点で構成。英字は Space Grotesk、メタは JetBrains Mono。シャドウは原則使わない（ガラス・オフセットシャドウのみ例外、§5 §6） |
+| 幾何学のかっこよさ | 1px の線・点で構成。英字は Space Grotesk、メタは JetBrains Mono。シャドウは原則使わない（ガラス・オフセットシャドウのみ例外、§5 §6） |
 | ノートの自然さ | 暖色の紙、赤いマージン線、ドットリーダー、明朝の見出し。読む姿勢を妨げない静けさ |
 | グラデーション | 「藍 → 朱」の1種のみ。1ビュー3箇所まで（ヒーローの1語＋ロゴマーク＋幾何タイル1つ）。ホバー下線・フッターマークは面積最小の補助扱い |
 | ガラスの立体感 | 半透明＋backdrop-filter は「浮遊要素」だけに使う。背景にパターンか色がある場所で限定（§5） |
@@ -109,9 +109,8 @@
 
 ### SectionHead（`.sec-head`）
 
-- 下端に 1px `--ink` の構造線。`padding-left: 56px` を確保し、**番号タブを線に跨らせる**
-- 番号タブ: `position: absolute; left: 0; bottom: -10px`、Mono .66rem、`--paper` 塗り＋1px `--rule` 枠（線の上に紙が乗る重なり）
-- 構成: `[タブ番号] 見出し（明朝1.28rem） ENラベル（Mono .6rem / .24em） —伸縮する罫線— 十字マーカー`
+- 下端に 1px `--ink` の構造線
+- 構成: `見出し（明朝1.28rem） ENラベル（Mono .6rem / .24em） —伸縮する罫線— 十字マーカー`
 - 罫線は左から `scaleX` で伸びる（§7）
 
 ### NoteBlock（`.note`）
@@ -158,11 +157,10 @@
 
 影でなく「重なり」で表現する:
 
-1. **セクション番号タブ** が構造線に跨る（紙が線に乗る）
-2. **幾何学パターン** が本文の背面に 40px 回り込む（`margin-left: -72px` ＋ z-index）
-3. **IconTile がリングに重なる**、**グラデ塗りタイルは最前面**
-4. **カードのオフセットシャドウ**（6px・5%のフラットな影＝積み紙）＋ hover で浮上（translate −3px・影 9px・8%）
-5. ガラス面そのものが透過による前後関係を生む（§5）
+1. **幾何学パターン** が本文の背面に 40px 回り込む（`margin-left: -72px` ＋ z-index）
+2. **IconTile がリングに重なる**、**グラデ塗りタイルは最前面**
+3. **カードのオフセットシャドウ**（6px・5%のフラットな影＝積み紙）＋ hover で浮上（translate −3px・影 9px・8%）
+4. ガラス面そのものが透過による前後関係を生む（§5）
 
 ## 7. モーション仕様
 
@@ -217,7 +215,7 @@
 | `.site-header` | `src/components/Header.astro` | カレント判定は `Astro.url.pathname` |
 | `.hero` / `.hero-inner` | `src/components/Hero.astro` | タグライン・リンク先は props |
 | `.hero-geo` / `.geo-tile` | `src/components/GeoField.astro` / `IconTile.astro` | SVGはコンポーネント内蔵 |
-| `.sec-head` | `src/components/SectionHead.astro` | props: `num`, `title`, `en` |
+| `.sec-head` | `src/components/SectionHead.astro` | props: `title`, `en` |
 | `.note` / `.meta-row` | global.css のユーティリティ / `ProfileMeta.astro` | |
 | `.card` | `src/components/ProjectCard.astro` | Content Collection の entry を受ける |
 | `.art-row` / `.badge` | `src/components/ArticleRow.astro` / `Badge.astro` | `articles.json`（fetch スクリプト生成）を受ける |

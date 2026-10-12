@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Design Mockup v0.3 — MyWeb</title>
+<title>Design Mockup v0.4 — MyWeb</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
@@ -204,13 +204,8 @@ body {
 /* sections */
 .sec { padding: 30px 0 56px; }
 .sec-head {
-  position: relative; display: flex; align-items: baseline; gap: 14px;
-  border-bottom: 1px solid var(--ink); padding: 0 0 10px 56px; margin-bottom: 36px;
-}
-.sec-num {
-  position: absolute; left: 0; bottom: -10px;
-  font-family: var(--mono); font-size: .66rem; letter-spacing: .1em; color: var(--ink-2);
-  background: var(--paper); border: 1px solid var(--rule); padding: 2px 9px;
+  display: flex; align-items: baseline; gap: 14px;
+  border-bottom: 1px solid var(--ink); padding-bottom: 10px; margin-bottom: 36px;
 }
 .sec-title { font-family: var(--serif); font-weight: 600; font-size: 1.28rem; }
 .sec-en { font-family: var(--mono); font-size: .6rem; letter-spacing: .24em; color: var(--ink-3); }
@@ -380,7 +375,7 @@ body {
 <div class="sheet">
 
   <header class="spec-top">
-    <span>MYWEB — DESIGN MOCKUP v0.3</span>
+    <span>MYWEB — DESIGN MOCKUP v0.4</span>
     <span>2026-10-12 / ※人名・記事名はサンプル / スクロールでアニメーション発火</span>
   </header>
 
@@ -388,7 +383,7 @@ body {
     <h2 class="spec-h">CONCEPT</h2>
     <p class="concept-lead">「幾何学」と「ノート」のあいだ。</p>
     <ul class="concept-list">
-      <li><b>幾何学のかっこよさ</b>1px の線・番号・点で組み立てる。余白にはストロークアイコン。英字は Space Grotesk、メタは JetBrains Mono。</li>
+      <li><b>幾何学のかっこよさ</b>1px の線・点で組み立てる。余白にはストロークアイコン。英字は Space Grotesk、メタは JetBrains Mono。</li>
       <li><b>ノートの自然さ</b>暖色の紙、赤いマージン線、ドットリーダー、明朝の見出し。読む姿勢を妨げない静けさ。</li>
       <li><b>グラデーション</b>「藍 → 朱」の1種のみ。1ビュー3箇所まで（1語＋マーク＋タイル1つ）。面積は最小に。</li>
       <li><b>ガラスの立体感</b>半透明＋backdrop-filter の「浮遊要素」だけに使う。背景にパターンか色がある場所で限定。</li>
@@ -490,7 +485,6 @@ body {
 
         <section class="sec">
           <header class="sec-head reveal">
-            <span class="sec-num">01</span>
             <h2 class="sec-title">About</h2>
             <span class="sec-en">PROFILE</span>
             <span class="sec-rule"></span>
@@ -512,7 +506,6 @@ body {
 
         <section class="sec">
           <header class="sec-head reveal">
-            <span class="sec-num">02</span>
             <h2 class="sec-title">Works</h2>
             <span class="sec-en">PROJECTS</span>
             <span class="sec-rule"></span>
@@ -551,7 +544,6 @@ body {
 
         <section class="sec">
           <header class="sec-head reveal">
-            <span class="sec-num">03</span>
             <h2 class="sec-title">Articles</h2>
             <span class="sec-en">WRITING</span>
             <span class="sec-rule"></span>
@@ -630,12 +622,12 @@ body {
     <h2 class="spec-h">USAGE NOTES</h2>
     <ul class="usage">
       <li><b>GRADIENT</b><span>「藍→朱」1種。1ビュー3箇所まで（ヒーローの1語＋ロゴマーク＋幾何タイル1つ）。合計面積を最小に保つ。</span></li>
-      <li><b>GEOMETRY</b><span>幾何要素は 1px の線・点・番号に限定。余白の幾何学領域には 1.5px ストロークの SVG アイコン（terminal / code / pen）を配置。シャドウは原則使わない。</span></li>
+      <li><b>GEOMETRY</b><span>幾何要素は 1px の線・点に限定。余白の幾何学領域には 1.5px ストロークの SVG アイコン（terminal / code / pen）を配置。シャドウは原則使わない。</span></li>
       <li><b>NOTEBOOK</b><span>赤マージン線（本文ブロック左）・ドットリーダー（プロフィール）・破線（記事リスト区切り）で「紙」を示す。</span></li>
       <li><b>TYPE ROLES</b><span>明朝＝見出し / ゴシック＝本文 / Mono＝メタ情報 / Space Grotesk＝英字ロゴ。役割を混ぜない。</span></li>
       <li><b>MOTION</b><span>IntersectionObserver ＋ CSS のみ（JS 約15行・ライブラリなし）。fade ＋ 16px 上昇、stagger 70ms、セクション罫線は左から伸びる。prefers-reduced-motion で全無効。</span></li>
       <li><b>GLASS</b><span>ガラスは「背景にパターンや色がある場所」の浮遊要素にのみ使う（ヘッダー / 幾何タイル / カード）。blur 6–10px・背景62%・白ヘアリン罫。ヘッダーは sticky でスクロール時に実物確認。prefers-reduced-transparency では不透明に戻す。</span></li>
-      <li><b>DEPTH</b><span>重なり＋ガラスで立体感。カード＝ガラス面＋フラットな6pxオフセットシャドウ（積み紙）＋ホバーで浮上、セクション番号＝罫線に跨るタブ、幾何学パターンは本文の背面に回り込む。</span></li>
+      <li><b>DEPTH</b><span>重なり＋ガラスで立体感。カード＝ガラス面＋フラットな6pxオフセットシャドウ（積み紙）＋ホバーで浮上、幾何学パターンは本文の背面に回り込む。</span></li>
       <li><b>RESPONSIVE</b><span>860px 以下は1カラムに崩し、幾何装飾（一部タイル・弧）は間引く。</span></li>
     </ul>
   </section>

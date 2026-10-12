@@ -37,7 +37,7 @@ MyWeb — 学生エンジニアのポートフォリオサイト（Astro + Cloud
 - Playwright は `file://` をブロックするため、`docs/design` をローカルHTTPサーバー（例: node ワンライナーで 127.0.0.1:8765）に立てて `http://` で開く。用済み後はサーバーのプロセスを停止する
 - フォントは Google Fonts CDN。検証前に2〜3秒待つ（`document.fonts.check` は weight 指定で確認すること）
 - fullPage スクリーンショットの前に `.reveal` 全要素へ `is-in` を付与（スペックシート構造上、IO はファーストビュー外で未発火になる）
-- 検証項目: 横溢れなし（1280px と 430px）、`.sec-num` タブが罫線に跨る、`.geo-tile.t2` がリングに重なる、`backdrop-filter` の計算値
+- 検証項目: 横溢れなし（1280px と 430px）、`.geo-tile.t2` がリングに重なる、`backdrop-filter` の計算値
 - favicon 404 のコンソールエラーは無視してよい
 
 ## 実装時の注意

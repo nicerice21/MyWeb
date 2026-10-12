@@ -32,7 +32,7 @@ const aboutContent = about?.rendered?.html || about?.body || '';
       <Hero />
 
       <section class="sec">
-        <SectionHead num="01" title="About" en="PROFILE" />
+        <SectionHead title="About" en="PROFILE" />
         <div class="about-grid">
           <div class="about-text note reveal" set:html={aboutContent}></div>
           <dl class="meta note reveal d1">
@@ -45,10 +45,10 @@ const aboutContent = about?.rendered?.html || about?.body || '';
       </section>
 
       <section class="sec">
-        <SectionHead num="02" title="Works" en="PROJECTS" />
+        <SectionHead title="Works" en="PROJECTS" />
         <div class="cards">
           {featured.map((p, i) => (
-            <a href={`/projects/${p.slug}`}>
+            <a href={`/projects/${p.id.replace(/\.md$/, '').split('/').pop() || p.id}`}>
               <ProjectCard
                 title={p.data.title}
                 index={`P-${String(i + 1).padStart(2, '0')}`}
@@ -63,7 +63,7 @@ const aboutContent = about?.rendered?.html || about?.body || '';
       </section>
 
       <section class="sec">
-        <SectionHead num="03" title="Articles" en="WRITING" />
+        <SectionHead title="Articles" en="WRITING" />
         <p class="sec-note">Qiita とはてなブログに書いた記事を、ビルド時に API / フィードから取得して一覧にしています。</p>
         <ul class="art-list">
           {articles.slice(0, 5).map((a, i) => (

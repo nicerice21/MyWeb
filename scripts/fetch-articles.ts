@@ -1,6 +1,8 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { XMLParser } from 'fast-xml-parser';
+import { SOURCES } from '../src/config';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -31,13 +33,33 @@ async function fetchHatenaArticles(origin: string): Promise<Article[]> {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Hatena feed failed: ${res.status}`);
   const text = await res.text();
-  // TODO: parse XML with fast-xml-parser
-  return [];
+  const feed = new XMLParser({
+    ignoreAttributes: false,
+    attributeNamePrefix: '@_',
+  }).parse(text).feed;
+  const entries = Array.isArray(feed.entry) ? feed.entry : feed.entry ? [feed.entry] : [];
+
+  return entries
+    .map((entry: any) => {
+      const links = Array.isArray(entry.link) ? entry.link : [entry.link];
+      const articleLink = links.find((link: any) => link?.['@_rel'] === undefined || link['@_rel'] === 'alternate');
+      if (!articleLink?.['@_href'] || !entry.title || !entry.published) return null;
+
+      const categories = Array.isArray(entry.category) ? entry.category : entry.category ? [entry.category] : [];
+      return {
+        title: entry.title,
+        url: articleLink['@_href'],
+        publishedAt: entry.published,
+        source: 'hatena' as const,
+        tags: categories.map((category: any) => category['@_term']).filter(Boolean),
+      };
+    })
+    .filter((article: Article | null): article is Article => article !== null);
 }
 
 async function main() {
-  const qiitaUserId = process.env.QIITA_USER_ID || 'xxx';
-  const hatenaOrigin = process.env.HATENA_BLOG_ORIGIN || 'xxx.hatenablog.com';
+  const qiitaUserId = process.env.QIITA_USER_ID || SOURCES.qiitaUserId;
+  const hatenaOrigin = process.env.HATENA_BLOG_ORIGIN || SOURCES.hatenaBlogOrigin;
 
   const [qiita, hatena] = await Promise.all([
     fetchQiitaArticles(qiitaUserId),

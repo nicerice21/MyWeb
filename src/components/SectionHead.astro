@@ -1,16 +1,13 @@
 ---
 interface Props {
-  num: string;
   title: string;
   en: string;
-  className?: string;
 }
 
-const { num, title, en, className = '' } = Astro.props;
+const { title, en } = Astro.props;
 ---
 
-<header class:list={['sec-head', 'reveal', className]}>
-  <span class="sec-num mono">{num}</span>
+<header class:list={['sec-head', 'reveal']}>
   <h2 class="sec-title">{title}</h2>
   <span class="sec-en mono">{en}</span>
   <span class="sec-rule"></span>
@@ -19,26 +16,12 @@ const { num, title, en, className = '' } = Astro.props;
 
 <style>
   .sec-head {
-    position: relative;
     display: flex;
     align-items: baseline;
     gap: 14px;
     border-bottom: 1px solid var(--ink);
-    padding: 0 0 10px 56px;
+    padding-bottom: 10px;
     margin-bottom: 36px;
-  }
-
-  .sec-num {
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    font-family: var(--mono);
-    font-size: 0.66rem;
-    letter-spacing: 0.1em;
-    color: var(--ink-2);
-    background: var(--paper);
-    border: 1px solid var(--rule);
-    padding: 2px 9px;
   }
 
   .sec-title {

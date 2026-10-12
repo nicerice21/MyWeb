@@ -21,7 +21,7 @@ const content = about.rendered?.html || about.body || '';
     <Header />
     <main>
       <section class="sec">
-        <SectionHead num="01" title="About" en="PROFILE" />
+        <SectionHead title="About" en="PROFILE" />
         <div class="about-grid">
           <div class="about-text note reveal" set:html={content}></div>
           <div class="about-sidebar">

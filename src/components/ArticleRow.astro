@@ -10,6 +10,8 @@ interface Props {
   delay?: number;
 }
 
+import Badge from './Badge.astro';
+
 const { article, delay = 0 } = Astro.props;
 const date = new Date(article.publishedAt);
 const dateStr = date.toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.');
