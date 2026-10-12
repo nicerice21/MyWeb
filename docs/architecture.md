@@ -297,6 +297,7 @@ jobs:
 ## 参照
 
 - デザイン仕様: [design/design.md](./design/design.md)（モックアップ: [design/mockup.html](./design/mockup.html)）
+- コンテンツ設計: [content.md](./content.md)
 - Workers Static Assets: <https://developers.cloudflare.com/workers/static-assets/>
 - Astro + Cloudflare: <https://developers.cloudflare.com/workers/framework-guides/>
 - Qiita API v2: <https://qiita.com/api/v2/docs>
