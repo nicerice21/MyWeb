@@ -1,0 +1,28 @@
+{
+  "name": "myweb",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "tsx scripts/fetch-articles.ts && astro dev",
+    "build": "tsx scripts/fetch-articles.ts && astro build",
+    "deploy": "npm run build && wrangler deploy",
+    "check": "astro check",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/jetbrains-mono": "^5.2.6",
+    "@fontsource/shippori-mincho-b1": "^5.2.5",
+    "@fontsource/space-grotesk": "^5.2.5",
+    "@fontsource/zen-kaku-gothic-new": "^5.2.5",
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.7.10",
+    "fast-xml-parser": "^5.2.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@types/node": "^22.15.21",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}

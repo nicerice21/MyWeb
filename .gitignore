@@ -1,1 +1,7 @@
-/.playwright-mcp
+node_modules/
+dist/
+.astro/
+.env
+.env.local
+src/data/articles.json
+*.local
