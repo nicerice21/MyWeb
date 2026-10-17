@@ -1,21 +1,16 @@
 ---
-export type LinkProps = {
+interface Props {
   href: string;
-  children: string;
   variant?: 'link' | 'button';
   className?: string;
-};
+}
 
-const { href, children, variant = 'link', className = '' } = Astro.props;
+const { href, variant = 'link', className = '' } = Astro.props;
 ---
 
-{
-  variant === 'button' ? (
-    <a href={href} class:list={['btn', className]}>{children}</a>
-  ) : (
-    <a href={href} class:list={['link', className]}>{children}</a>
-  )
-}
+<a href={href} class:list={[variant === 'button' ? 'btn' : 'link', className]}>
+  <slot />
+</a>
 
 <style>
   .btn {
