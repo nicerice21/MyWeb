@@ -1,4 +1,11 @@
 ---
+import '@fontsource/shippori-mincho-b1/600.css';
+import '@fontsource/zen-kaku-gothic-new/400.css';
+import '@fontsource/zen-kaku-gothic-new/500.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/space-grotesk/600.css';
+
 interface Props {
   title: string;
   description?: string;
@@ -41,10 +48,4 @@ const { title, description = 'Student engineer portfolio' } = Astro.props;
 
 <style is:global>
   @import '../styles/global.css';
-  @import '@fontsource/shippori-mincho-b1/600.css';
-  @import '@fontsource/zen-kaku-gothic-new/400.css';
-  @import '@fontsource/zen-kaku-gothic-new/500.css';
-  @import '@fontsource/jetbrains-mono/400.css';
-  @import '@fontsource/jetbrains-mono/500.css';
-  @import '@fontsource/space-grotesk/600.css';
 </style>
