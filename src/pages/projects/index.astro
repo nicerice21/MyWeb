@@ -16,7 +16,7 @@ const sorted = projects.sort((a, b) => new Date(b.data.published).getTime() - ne
     <Header />
     <main>
       <section class="sec">
-        <SectionHead title="Works" en="PROJECTS" />
+        <SectionHead title="Works" />
         <div class="cards">
           {sorted.map((p, i) => (
             <a href={`/projects/${p.id.replace(/\.md$/, '').split('/').pop() || p.id}`}>

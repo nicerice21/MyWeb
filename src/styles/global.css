@@ -74,19 +74,8 @@ html.js .reveal.d2 { transition-delay: 0.14s; }
 html.js .reveal.d3 { transition-delay: 0.21s; }
 html.js .reveal.d4 { transition-delay: 0.28s; }
 
-html.js .sec-head .sec-rule {
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.15s;
-}
-
-html.js .sec-head.is-in .sec-rule {
-  transform: scaleX(1);
-}
-
 @media (prefers-reduced-motion: reduce) {
-  html.js .reveal,
-  html.js .sec-head .sec-rule {
+  html.js .reveal {
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;

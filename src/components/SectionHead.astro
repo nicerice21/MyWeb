@@ -1,24 +1,17 @@
 ---
 interface Props {
   title: string;
-  en: string;
 }
 
-const { title, en } = Astro.props;
+const { title } = Astro.props;
 ---
 
-<header class:list={['sec-head', 'reveal']}>
+<header class="sec-head reveal">
   <h2 class="sec-title">{title}</h2>
-  <span class="sec-en mono">{en}</span>
-  <span class="sec-rule"></span>
-  <span class="plus"></span>
 </header>
 
 <style>
   .sec-head {
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
     border-bottom: 1px solid var(--ink);
     padding-bottom: 10px;
     margin-bottom: 36px;
@@ -28,47 +21,5 @@ const { title, en } = Astro.props;
     font-family: var(--serif);
     font-weight: 600;
     font-size: 1.28rem;
-  }
-
-  .sec-en {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.24em;
-    color: var(--ink-3);
-  }
-
-  .sec-rule {
-    flex: 1;
-    height: 1px;
-    background: var(--ink);
-  }
-
-  .plus {
-    position: relative;
-    width: 9px;
-    height: 9px;
-    display: inline-block;
-    transform: translateY(-2px);
-  }
-
-  .plus::before,
-  .plus::after {
-    content: "";
-    position: absolute;
-    background: var(--ink-3);
-  }
-
-  .plus::before {
-    left: 4px;
-    top: 0;
-    width: 1px;
-    height: 9px;
-  }
-
-  .plus::after {
-    top: 4px;
-    left: 0;
-    height: 1px;
-    width: 9px;
   }
 </style>

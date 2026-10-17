@@ -1,7 +1,7 @@
 # デザイン仕様 — MyWeb ポートフォリオ
 
 - 更新日: 2026-10-12
-- ステータス: 確定（v0.4 時点の仕様）
+- ステータス: 確定（v0.5 時点の仕様）
 - ビジュアルの一次資料: [mockup.html](./mockup.html)（トークン・コンポーネント・アニメーションの動く見本）
 - 関連: [../architecture.md](../architecture.md)（技術構成）
 
@@ -110,8 +110,7 @@
 ### SectionHead（`.sec-head`）
 
 - 下端に 1px `--ink` の構造線
-- 構成: `見出し（明朝1.28rem） ENラベル（Mono .6rem / .24em） —伸縮する罫線— 十字マーカー`
-- 罫線は左から `scaleX` で伸びる（§7）
+- 構成: `見出し（明朝1.28rem）` のみ
 
 ### NoteBlock（`.note`）
 
@@ -170,7 +169,6 @@
 | --- | --- |
 | 出現 | `opacity 0→1` ＋ `translateY(16px)→0`、`.55s ease` |
 | Stagger | `d1–d4 = .07/.14/.21/.28s`（カード・記事行など同_group_要素で段差） |
-| セクション罫線 | `scaleX 0→1`、`.7s cubic-bezier(.22,.61,.36,1) .15s`、origin left |
 | IO 設定 | `threshold: 0.15`、`rootMargin: '0px 0px -8% 0px'`、発火後 `unobserve` |
 | 除外 | `prefers-reduced-motion: reduce` で全無効（即表示） |
 
@@ -215,7 +213,7 @@
 | `.site-header` | `src/components/Header.astro` | カレント判定は `Astro.url.pathname` |
 | `.hero` / `.hero-inner` | `src/components/Hero.astro` | タグライン・リンク先は props |
 | `.hero-geo` / `.geo-tile` | `src/components/GeoField.astro` / `IconTile.astro` | SVGはコンポーネント内蔵 |
-| `.sec-head` | `src/components/SectionHead.astro` | props: `title`, `en` |
+| `.sec-head` | `src/components/SectionHead.astro` | props: `title` |
 | `.note` / `.meta-row` | global.css のユーティリティ / `ProfileMeta.astro` | |
 | `.card` | `src/components/ProjectCard.astro` | Content Collection の entry を受ける |
 | `.art-row` / `.badge` | `src/components/ArticleRow.astro` / `Badge.astro` | `articles.json`（fetch スクリプト生成）を受ける |
